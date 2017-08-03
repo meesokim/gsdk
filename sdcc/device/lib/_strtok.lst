@@ -1,0 +1,189 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:51 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module _strtok
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _strtok
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+   0000                      22 _strtok_s_1_1:
+   0000                      23 	.ds 2
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable items in internal ram 
+                             26 ;--------------------------------------------------------
+                             27 	.area _OVERLAY
+                             28 ;--------------------------------------------------------
+                             29 ; indirectly addressable internal ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area _ISEG
+                             32 ;--------------------------------------------------------
+                             33 ; bit data
+                             34 ;--------------------------------------------------------
+                             35 	.area _BSEG
+                             36 ;--------------------------------------------------------
+                             37 ; external ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area _XSEG
+                             40 ;--------------------------------------------------------
+                             41 ; global & static initialisations
+                             42 ;--------------------------------------------------------
+                             43 	.area _GSINIT
+                             44 	.area _GSFINAL
+                             45 	.area _GSINIT
+                             46 ;--------------------------------------------------------
+                             47 ; Home
+                             48 ;--------------------------------------------------------
+                             49 	.area _HOME
+                             50 	.area _CODE
+                             51 ;--------------------------------------------------------
+                             52 ; code
+                             53 ;--------------------------------------------------------
+                             54 	.area _CODE
+                             55 ;	_strtok.c 32
+                             56 ;	genLabel
+                             57 ;	genFunction
+                             58 ;	---------------------------------
+                             59 ; Function strtok
+                             60 ; ---------------------------------
+   0000                      61 ___strtok_start:
+   0000                      62 _strtok:
+   0000 E8 FE                63 	lda	sp,-2(sp)
+                             64 ;	_strtok.c 39
+                             65 ;	genIfx
+                             66 ;	AOP_STK for 
+   0002 F8 04                67 	lda	hl,4(sp)
+   0004 2A                   68 	ld	a,(hl+)
+   0005 B6                   69 	or	a,(hl)
+   0006 CAr11s00             70 	jp	z,00102$
+                             71 ;	_strtok.c 40
+                             72 ;	genAssign
+                             73 ;	AOP_STK for 
+                             74 ;	AOP_HL for _strtok_s_1_1
+   0009 2B                   75 	dec	hl
+   000A 2A                   76 	ld	a,(hl+)
+   000B 5E                   77 	ld	e,(hl)
+   000C 21r00s00             78 	ld	hl,#_strtok_s_1_1
+   000F 22                   79 	ld	(hl+),a
+   0010 73                   80 	ld	(hl),e
+                             81 ;	genLabel
+   0011                      82 00102$:
+                             83 ;	_strtok.c 42
+                             84 ;	genAssign
+                             85 ;	AOP_HL for _strtok_s_1_1
+                             86 ;	AOP_STK for _strtok_s1_1_1
+   0011 21r00s00             87 	ld	hl,#_strtok_s_1_1
+   0014 2A                   88 	ld	a,(hl+)
+   0015 5E                   89 	ld	e,(hl)
+   0016 F8 00                90 	lda	hl,0(sp)
+   0018 22                   91 	ld	(hl+),a
+   0019 73                   92 	ld	(hl),e
+                             93 ;	_strtok.c 44
+                             94 ;	genLabel
+   001A                      95 00105$:
+                             96 ;	genAssign
+                             97 ;	AOP_HL for _strtok_s_1_1
+   001A 21r00s00             98 	ld	hl,#_strtok_s_1_1
+   001D 4E                   99 	ld	c,(hl)
+   001E 23                  100 	inc	hl
+   001F 46                  101 	ld	b,(hl)
+                            102 ;	genPointerGet
+   0020 0A                  103 	ld	a,(bc)
+                            104 ;	genIfx
+   0021 B7                  105 	or	a,a
+   0022 CAr61s00            106 	jp	z,00107$
+                            107 ;	_strtok.c 45
+                            108 ;	genAssign
+                            109 ;	AOP_HL for _strtok_s_1_1
+   0025 2B                  110 	dec	hl
+   0026 4E                  111 	ld	c,(hl)
+   0027 23                  112 	inc	hl
+   0028 46                  113 	ld	b,(hl)
+                            114 ;	genPointerGet
+   0029 0A                  115 	ld	a,(bc)
+                            116 ;	genIpush
+                            117 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   002A 4F                  118 	ld	c,a
+   002B F5                  119 	push	af
+   002C 33                  120 	inc	sp
+                            121 ;	genIpush
+                            122 ;	AOP_STK for 
+   002D F8 07               123 	lda	hl,7(sp)
+   002F 2A                  124 	ld	a,(hl+)
+   0030 66                  125 	ld	h,(hl)
+   0031 6F                  126 	ld	l,a
+   0032 E5                  127 	push	hl
+                            128 ;	genCall
+   0033 CDr00s00            129 	call	_strchr
+   0036 42                  130 	ld	b,d
+   0037 4B                  131 	ld	c,e
+   0038 E8 03               132 	lda	sp,3(sp)
+                            133 ;	genIfx
+   003A 79                  134 	ld	a,c
+   003B B0                  135 	or	a,b
+   003C CAr56s00            136 	jp	z,00104$
+                            137 ;	_strtok.c 46
+                            138 ;	genAssign
+                            139 ;	AOP_HL for _strtok_s_1_1
+   003F 21r00s00            140 	ld	hl,#_strtok_s_1_1
+   0042 4E                  141 	ld	c,(hl)
+   0043 23                  142 	inc	hl
+   0044 46                  143 	ld	b,(hl)
+                            144 ;	genPlus
+                            145 ;	AOP_HL for _strtok_s_1_1
+                            146 ;	genPlusIncr
+   0045 2B                  147 	dec	hl
+   0046 34                  148 	inc	(hl)
+   0047 20 02               149 	jr	nz,00114$
+   0049 23                  150 	inc	hl
+   004A 34                  151 	inc	(hl)
+   004B                     152 00114$:
+                            153 ;	genAssign (pointer)
+   004B 3E 00               154 	ld	a,#0x00
+   004D 02                  155 	ld	(bc),a
+                            156 ;	_strtok.c 47
+                            157 ;	genRet
+                            158 ;	AOP_STK for _strtok_s1_1_1
+   004E F8 00               159 	lda	hl,0(sp)
+   0050 5E                  160 	ld	e,(hl)
+   0051 23                  161 	inc	hl
+   0052 56                  162 	ld	d,(hl)
+   0053 C3r64s00            163 	jp	00108$
+                            164 ;	genLabel
+   0056                     165 00104$:
+                            166 ;	_strtok.c 49
+                            167 ;	genPlus
+                            168 ;	AOP_HL for _strtok_s_1_1
+                            169 ;	genPlusIncr
+   0056 21r00s00            170 	ld	hl,#_strtok_s_1_1
+   0059 34                  171 	inc	(hl)
+   005A 20 02               172 	jr	nz,00115$
+   005C 23                  173 	inc	hl
+   005D 34                  174 	inc	(hl)
+   005E                     175 00115$:
+                            176 ;	genGoto
+   005E C3r1As00            177 	jp	00105$
+                            178 ;	genLabel
+   0061                     179 00107$:
+                            180 ;	_strtok.c 51
+                            181 ;	genRet
+   0061 11 00 00            182 	ld	de,#0x0000
+                            183 ;	genLabel
+   0064                     184 00108$:
+                            185 ;	genEndFunction
+   0064 E8 02               186 	lda	sp,2(sp)
+   0066 C9                  187 	ret
+   0067                     188 ___strtok_end:
+                            189 	.area _CODE

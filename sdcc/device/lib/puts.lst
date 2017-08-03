@@ -1,0 +1,143 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:51 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module puts
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _puts
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	puts.c 27
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function puts
+                             58 ; ---------------------------------
+   0000                      59 ___puts_start:
+   0000                      60 _puts:
+   0000 E8 FD                61 	lda	sp,-3(sp)
+                             62 ;	puts.c 30
+                             63 ;	genAssign
+                             64 ;	AOP_STK for 
+   0002 F8 05                65 	lda	hl,5(sp)
+   0004 4E                   66 	ld	c,(hl)
+   0005 23                   67 	inc	hl
+   0006 46                   68 	ld	b,(hl)
+                             69 ;	genAssign
+                             70 ;	AOP_STK for _puts_i_1_1
+   0007 F8 01                71 	lda	hl,1(sp)
+   0009 36 00                72 	ld	(hl),#0x00
+   000B 23                   73 	inc	hl
+   000C 36 00                74 	ld	(hl),#0x00
+                             75 ;	genLabel
+   000E                      76 00101$:
+                             77 ;	genPointerGet
+                             78 ;	AOP_STK for _puts_sloc0_1_0
+   000E 0A                   79 	ld	a,(bc)
+   000F F8 00                80 	lda	hl,0(sp)
+   0011 77                   81 	ld	(hl),a
+                             82 ;	genIfx
+                             83 ;	AOP_STK for _puts_sloc0_1_0
+   0012 AF                   84 	xor	a,a
+   0013 B6                   85 	or	a,(hl)
+   0014 CAr2Cs00             86 	jp	z,00103$
+                             87 ;	puts.c 31
+                             88 ;	genPlus
+                             89 ;	genPlusIncr
+   0017 03                   90 	inc	bc
+                             91 ;	genIpush
+                             92 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   0018 C5                   93 	push	bc
+                             94 ;	AOP_STK for _puts_sloc0_1_0
+   0019 7E                   95 	ld	a,(hl)
+   001A F5                   96 	push	af
+   001B 33                   97 	inc	sp
+                             98 ;	genCall
+   001C CDr00s00             99 	call	_putchar
+   001F E8 01               100 	lda	sp,1(sp)
+   0021 C1                  101 	pop	bc
+                            102 ;	puts.c 32
+                            103 ;	genPlus
+                            104 ;	AOP_STK for _puts_i_1_1
+                            105 ;	genPlusIncr
+   0022 F8 01               106 	lda	hl,1(sp)
+   0024 34                  107 	inc	(hl)
+   0025 20 02               108 	jr	nz,00108$
+   0027 23                  109 	inc	hl
+   0028 34                  110 	inc	(hl)
+   0029                     111 00108$:
+                            112 ;	genGoto
+   0029 C3r0Es00            113 	jp	00101$
+                            114 ;	genLabel
+   002C                     115 00103$:
+                            116 ;	puts.c 34
+                            117 ;	genIpush
+                            118 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   002C 3E 0A               119 	ld	a,#0x0A
+   002E F5                  120 	push	af
+   002F 33                  121 	inc	sp
+                            122 ;	genCall
+   0030 CDr00s00            123 	call	_putchar
+   0033 E8 01               124 	lda	sp,1(sp)
+                            125 ;	puts.c 35
+                            126 ;	genPlus
+                            127 ;	AOP_STK for _puts_i_1_1
+                            128 ;	genPlusIncr
+   0035 F8 01               129 	lda	hl,1(sp)
+   0037 4E                  130 	ld	c,(hl)
+   0038 23                  131 	inc	hl
+   0039 46                  132 	ld	b,(hl)
+   003A 03                  133 	inc	bc
+                            134 ;	genRet
+   003B 59                  135 	ld	e,c
+   003C 50                  136 	ld	d,b
+                            137 ;	genLabel
+   003D                     138 00104$:
+                            139 ;	genEndFunction
+   003D E8 03               140 	lda	sp,3(sp)
+   003F C9                  141 	ret
+   0040                     142 ___puts_end:
+                            143 	.area _CODE

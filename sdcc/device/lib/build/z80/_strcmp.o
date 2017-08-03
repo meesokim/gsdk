@@ -1,0 +1,25 @@
+XL
+H 9 areas 1 global symbols
+M _strcmp
+A _CODE size 4C flags 0
+S _strcmp Def0000
+A _DATA size 0 flags 0
+A _OVERLAY size 0 flags 0
+A _ISEG size 0 flags 0
+A _BSEG size 0 flags 0
+A _XSEG size 0 flags 0
+A _GSINIT size 0 flags 0
+A _GSFINAL size 0 flags 0
+A _HOME size 0 flags 0
+T 00 00 DD E5 DD 21 00 00 DD 39 21 FE FF 39 F9 DD
+R 00 00 00 00
+T 0E 00 4E 04 DD 46 05 DD 7E 06 DD 77 FE DD 7E 07
+R 00 00 00 00
+T 1C 00 DD 77 FF 0A 5F DD 6E FE DD 66 FF 56 7B 92
+R 00 00 00 00
+T 2A 00 5F AF B3 C2 41 00 B2 CA 41 00 03 DD 34 FE
+R 00 00 00 00 00 06 00 00 00 0A 00 00
+T 38 00 C2 1F 00 DD 34 FF C3 1F 00 7B 17 9F 4F 6B
+R 00 00 00 00 00 03 00 00 00 09 00 00
+T 46 00 61 DD F9 DD E1 C9
+R 00 00 00 00

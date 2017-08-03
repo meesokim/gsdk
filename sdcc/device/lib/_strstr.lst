@@ -1,0 +1,248 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:51 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module _strstr
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _strstr
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	_strstr.c 27
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function strstr
+                             58 ; ---------------------------------
+   0000                      59 ___strstr_start:
+   0000                      60 _strstr:
+   0000 E8 F7                61 	lda	sp,-9(sp)
+                             62 ;	_strstr.c 32
+                             63 ;	genAssign
+                             64 ;	AOP_STK for 
+                             65 ;	AOP_STK for _strstr_cp_1_1
+   0002 F8 0B                66 	lda	hl,11(sp)
+   0004 2A                   67 	ld	a,(hl+)
+   0005 5E                   68 	ld	e,(hl)
+   0006 F8 07                69 	lda	hl,7(sp)
+   0008 22                   70 	ld	(hl+),a
+   0009 73                   71 	ld	(hl),e
+                             72 ;	_strstr.c 36
+                             73 ;	genAssign
+                             74 ;	AOP_STK for 
+                             75 ;	AOP_STK for _strstr_sloc0_1_0
+   000A F8 0D                76 	lda	hl,13(sp)
+   000C 2A                   77 	ld	a,(hl+)
+   000D 5E                   78 	ld	e,(hl)
+   000E F8 01                79 	lda	hl,1(sp)
+   0010 22                   80 	ld	(hl+),a
+   0011 73                   81 	ld	(hl),e
+                             82 ;	genPointerGet
+                             83 ;	AOP_STK for _strstr_sloc0_1_0
+   0012 2B                   84 	dec	hl
+   0013 5E                   85 	ld	e,(hl)
+   0014 23                   86 	inc	hl
+   0015 56                   87 	ld	d,(hl)
+   0016 1A                   88 	ld	a,(de)
+                             89 ;	genIfx
+   0017 B7                   90 	or	a,a
+   0018 C2r23s00             91 	jp	nz,00122$
+                             92 ;	_strstr.c 37
+                             93 ;	genRet
+                             94 ;	AOP_STK for _strstr_cp_1_1
+   001B F8 07                95 	lda	hl,7(sp)
+   001D 5E                   96 	ld	e,(hl)
+   001E 23                   97 	inc	hl
+   001F 56                   98 	ld	d,(hl)
+   0020 C3r8Es00             99 	jp	00113$
+                            100 ;	_strstr.c 39
+                            101 ;	genLabel
+   0023                     102 00122$:
+                            103 ;	genAssign
+                            104 ;	AOP_STK for _strstr_cp_1_1
+                            105 ;	(registers are the same)
+                            106 ;	genLabel
+   0023                     107 00110$:
+                            108 ;	genPointerGet
+                            109 ;	AOP_STK for _strstr_cp_1_1
+   0023 F8 07               110 	lda	hl,7(sp)
+   0025 5E                  111 	ld	e,(hl)
+   0026 23                  112 	inc	hl
+   0027 56                  113 	ld	d,(hl)
+   0028 1A                  114 	ld	a,(de)
+                            115 ;	genIfx
+   0029 B7                  116 	or	a,a
+   002A CAr8Bs00            117 	jp	z,00112$
+                            118 ;	_strstr.c 42
+                            119 ;	genAssign
+                            120 ;	AOP_STK for _strstr_sloc0_1_0
+                            121 ;	AOP_STK for _strstr_s2_1_1
+   002D F8 01               122 	lda	hl,1(sp)
+   002F 2A                  123 	ld	a,(hl+)
+   0030 5E                  124 	ld	e,(hl)
+   0031 23                  125 	inc	hl
+   0032 22                  126 	ld	(hl+),a
+   0033 73                  127 	ld	(hl),e
+                            128 ;	_strstr.c 44
+                            129 ;	genAssign
+                            130 ;	AOP_STK for _strstr_cp_1_1
+                            131 ;	AOP_STK for _strstr_s1_1_1
+   0034 F8 07               132 	lda	hl,7(sp)
+   0036 2A                  133 	ld	a,(hl+)
+   0037 5E                  134 	ld	e,(hl)
+   0038 F8 05               135 	lda	hl,5(sp)
+   003A 22                  136 	ld	(hl+),a
+   003B 73                  137 	ld	(hl),e
+                            138 ;	genAssign
+                            139 ;	AOP_STK for _strstr_s2_1_1
+                            140 ;	(registers are the same)
+                            141 ;	genLabel
+   003C                     142 00105$:
+                            143 ;	genPointerGet
+                            144 ;	AOP_STK for _strstr_s1_1_1
+   003C F8 05               145 	lda	hl,5(sp)
+   003E 5E                  146 	ld	e,(hl)
+   003F 23                  147 	inc	hl
+   0040 56                  148 	ld	d,(hl)
+   0041 1A                  149 	ld	a,(de)
+   0042 4F                  150 	ld	c,a
+                            151 ;	genIfx
+   0043 AF                  152 	xor	a,a
+   0044 B1                  153 	or	a,c
+   0045 CAr6Fs00            154 	jp	z,00107$
+                            155 ;	genPointerGet
+                            156 ;	AOP_STK for _strstr_s2_1_1
+   0048 F8 03               157 	lda	hl,3(sp)
+   004A 5E                  158 	ld	e,(hl)
+   004B 23                  159 	inc	hl
+   004C 56                  160 	ld	d,(hl)
+   004D 1A                  161 	ld	a,(de)
+   004E 47                  162 	ld	b,a
+                            163 ;	genIfx
+   004F AF                  164 	xor	a,a
+   0050 B0                  165 	or	a,b
+   0051 CAr6Fs00            166 	jp	z,00107$
+                            167 ;	genMinus
+                            168 ;	AOP_STK for _strstr_sloc1_1_0
+   0054 79                  169 	ld	a,c
+   0055 90                  170 	sub	a,b
+   0056 F8 00               171 	lda	hl,0(sp)
+   0058 77                  172 	ld	(hl),a
+                            173 ;	genIfx
+                            174 ;	AOP_STK for _strstr_sloc1_1_0
+   0059 AF                  175 	xor	a,a
+   005A B6                  176 	or	a,(hl)
+   005B C2r6Fs00            177 	jp	nz,00107$
+                            178 ;	_strstr.c 45
+                            179 ;	genPlus
+                            180 ;	AOP_STK for _strstr_s1_1_1
+                            181 ;	genPlusIncr
+   005E F8 05               182 	lda	hl,5(sp)
+   0060 34                  183 	inc	(hl)
+   0061 20 02               184 	jr	nz,00123$
+   0063 23                  185 	inc	hl
+   0064 34                  186 	inc	(hl)
+   0065                     187 00123$:
+                            188 ;	genPlus
+                            189 ;	AOP_STK for _strstr_s2_1_1
+                            190 ;	genPlusIncr
+   0065 F8 03               191 	lda	hl,3(sp)
+   0067 34                  192 	inc	(hl)
+   0068 20 02               193 	jr	nz,00124$
+   006A 23                  194 	inc	hl
+   006B 34                  195 	inc	(hl)
+   006C                     196 00124$:
+                            197 ;	genGoto
+   006C C3r3Cs00            198 	jp	00105$
+                            199 ;	genLabel
+   006F                     200 00107$:
+                            201 ;	_strstr.c 47
+                            202 ;	genPointerGet
+                            203 ;	AOP_STK for _strstr_s2_1_1
+   006F F8 03               204 	lda	hl,3(sp)
+   0071 5E                  205 	ld	e,(hl)
+   0072 23                  206 	inc	hl
+   0073 56                  207 	ld	d,(hl)
+   0074 1A                  208 	ld	a,(de)
+                            209 ;	genIfx
+   0075 B7                  210 	or	a,a
+   0076 C2r81s00            211 	jp	nz,00109$
+                            212 ;	_strstr.c 48
+                            213 ;	genRet
+                            214 ;	AOP_STK for _strstr_cp_1_1
+   0079 F8 07               215 	lda	hl,7(sp)
+   007B 5E                  216 	ld	e,(hl)
+   007C 23                  217 	inc	hl
+   007D 56                  218 	ld	d,(hl)
+   007E C3r8Es00            219 	jp	00113$
+                            220 ;	genLabel
+   0081                     221 00109$:
+                            222 ;	_strstr.c 50
+                            223 ;	genPlus
+                            224 ;	AOP_STK for _strstr_cp_1_1
+                            225 ;	genPlusIncr
+   0081 F8 07               226 	lda	hl,7(sp)
+   0083 34                  227 	inc	(hl)
+   0084 20 02               228 	jr	nz,00125$
+   0086 23                  229 	inc	hl
+   0087 34                  230 	inc	(hl)
+   0088                     231 00125$:
+                            232 ;	genAssign
+                            233 ;	AOP_STK for _strstr_cp_1_1
+                            234 ;	(registers are the same)
+                            235 ;	genGoto
+   0088 C3r23s00            236 	jp	00110$
+                            237 ;	genLabel
+   008B                     238 00112$:
+                            239 ;	_strstr.c 53
+                            240 ;	genRet
+   008B 11 00 00            241 	ld	de,#0x0000
+                            242 ;	genLabel
+   008E                     243 00113$:
+                            244 ;	genEndFunction
+   008E E8 09               245 	lda	sp,9(sp)
+   0090 C9                  246 	ret
+   0091                     247 ___strstr_end:
+                            248 	.area _CODE

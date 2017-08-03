@@ -1,0 +1,151 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:51 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module _strspn
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _strspn
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	_strspn.c 27
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function strspn
+                             58 ; ---------------------------------
+   0000                      59 ___strspn_start:
+   0000                      60 _strspn:
+   0000 E8 FD                61 	lda	sp,-3(sp)
+                             62 ;	_strspn.c 35
+                             63 ;	genAssign
+                             64 ;	AOP_STK for _strspn_count_1_1
+   0002 F8 01                65 	lda	hl,1(sp)
+   0004 36 00                66 	ld	(hl),#0x00
+   0006 23                   67 	inc	hl
+   0007 36 00                68 	ld	(hl),#0x00
+                             69 ;	genAssign
+                             70 ;	(operands are equal 3)
+                             71 ;	genLabel
+   0009                      72 00104$:
+                             73 ;	genPointerGet
+                             74 ;	AOP_STK for 
+                             75 ;	AOP_STK for _strspn_ch_1_1
+   0009 F8 05                76 	lda	hl,5(sp)
+   000B 5E                   77 	ld	e,(hl)
+   000C 23                   78 	inc	hl
+   000D 56                   79 	ld	d,(hl)
+   000E 1A                   80 	ld	a,(de)
+   000F F8 00                81 	lda	hl,0(sp)
+   0011 77                   82 	ld	(hl),a
+                             83 ;	genAssign
+                             84 ;	AOP_STK for _strspn_ch_1_1
+                             85 ;	(registers are the same)
+                             86 ;	genIfx
+                             87 ;	AOP_STK for _strspn_ch_1_1
+   0012 AF                   88 	xor	a,a
+   0013 B6                   89 	or	a,(hl)
+   0014 CAr3Ds00             90 	jp	z,00106$
+                             91 ;	_strspn.c 36
+                             92 ;	genIpush
+                             93 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                             94 ;	AOP_STK for _strspn_ch_1_1
+   0017 7E                   95 	ld	a,(hl)
+   0018 F5                   96 	push	af
+   0019 33                   97 	inc	sp
+                             98 ;	genIpush
+                             99 ;	AOP_STK for 
+   001A F8 08               100 	lda	hl,8(sp)
+   001C 2A                  101 	ld	a,(hl+)
+   001D 66                  102 	ld	h,(hl)
+   001E 6F                  103 	ld	l,a
+   001F E5                  104 	push	hl
+                            105 ;	genCall
+   0020 CDr00s00            106 	call	_strchr
+   0023 42                  107 	ld	b,d
+   0024 4B                  108 	ld	c,e
+   0025 E8 03               109 	lda	sp,3(sp)
+                            110 ;	genIfx
+   0027 79                  111 	ld	a,c
+   0028 B0                  112 	or	a,b
+   0029 CAr3Ds00            113 	jp	z,00106$
+                            114 ;	_strspn.c 37
+                            115 ;	genPlus
+                            116 ;	AOP_STK for _strspn_count_1_1
+                            117 ;	genPlusIncr
+   002C F8 01               118 	lda	hl,1(sp)
+   002E 34                  119 	inc	(hl)
+   002F 20 02               120 	jr	nz,00112$
+   0031 23                  121 	inc	hl
+   0032 34                  122 	inc	(hl)
+   0033                     123 00112$:
+                            124 ;	_strspn.c 40
+                            125 ;	genPlus
+                            126 ;	AOP_STK for 
+                            127 ;	genPlusIncr
+   0033 F8 05               128 	lda	hl,5(sp)
+   0035 34                  129 	inc	(hl)
+   0036 20 02               130 	jr	nz,00113$
+   0038 23                  131 	inc	hl
+   0039 34                  132 	inc	(hl)
+   003A                     133 00113$:
+                            134 ;	genGoto
+   003A C3r09s00            135 	jp	00104$
+                            136 ;	genLabel
+   003D                     137 00106$:
+                            138 ;	_strspn.c 43
+                            139 ;	genRet
+                            140 ;	AOP_STK for _strspn_count_1_1
+   003D F8 01               141 	lda	hl,1(sp)
+   003F 5E                  142 	ld	e,(hl)
+   0040 23                  143 	inc	hl
+   0041 56                  144 	ld	d,(hl)
+                            145 ;	genLabel
+   0042                     146 00107$:
+                            147 ;	genEndFunction
+   0042 E8 03               148 	lda	sp,3(sp)
+   0044 C9                  149 	ret
+   0045                     150 ___strspn_end:
+                            151 	.area _CODE

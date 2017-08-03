@@ -1,0 +1,34 @@
+ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 1.
+
+Symbol Table
+
+  0 ____char_emitter_end               02E1 R
+  0 ____char_emitter_start             02D6 R
+  0 ____printf_end                     02D6 R
+  0 ____printf_start                   00CD R
+  0 ____printn_end                     00BC R
+  0 ____printn_start                   0000 R
+  0 ___printf_end                      0301 R
+  0 ___printf_start                    02E1 R
+  0 __char_emitter                     02D6 GR
+    __divuint_rrx_s                    **** GX
+    __moduint_rrx_s                    **** GX
+  0 __printf                           00CD GR
+  0 __printn                           0000 GR
+  0 __str_0                            00BC R
+  0 _printf                            02E1 GR
+    _putchar                           **** GX
+
+ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 2.
+
+Area Table
+
+   0 _CODE                              size  301   flags 0
+   1 _DATA                              size    0   flags 0
+   2 _OVERLAY                           size    0   flags 0
+   3 _ISEG                              size    0   flags 0
+   4 _BSEG                              size    0   flags 0
+   5 _XSEG                              size    0   flags 0
+   6 _GSINIT                            size    0   flags 0
+   7 _GSFINAL                           size    0   flags 0
+   8 _HOME                              size    0   flags 0

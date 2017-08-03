@@ -1,0 +1,108 @@
+_atoi.rel: _atoi.c
+_atol.rel: _atol.c
+_autobaud.rel: _autobaud.c ../../device/include/8051.h
+_bp.rel: _bp.c
+_schar2fs.rel: _schar2fs.c
+_decdptr.rel: _decdptr.c
+_divsint.rel: _divsint.c ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h
+_divslong.rel: _divslong.c ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h
+_divuint.rel: _divuint.c
+_divulong.rel: _divulong.c
+_fs2schar.rel: _fs2schar.c ../../device/include/limits.h
+_fs2sint.rel: _fs2sint.c ../../device/include/limits.h
+_fs2slong.rel: _fs2slong.c ../../device/include/limits.h
+_fs2uchar.rel: _fs2uchar.c ../../device/include/limits.h
+_fs2uint.rel: _fs2uint.c ../../device/include/limits.h
+_fs2ulong.rel: _fs2ulong.c ../../device/include/limits.h
+_fsadd.rel: _fsadd.c
+_fsdiv.rel: _fsdiv.c
+_fseq.rel: _fseq.c
+_fsgt.rel: _fsgt.c
+_fslt.rel: _fslt.c
+_fsmul.rel: _fsmul.c
+_fsneq.rel: _fsneq.c
+_fssub.rel: _fssub.c
+_gptrget.rel: _gptrget.c
+_gptrput.rel: _gptrput.c
+_sint2fs.rel: _sint2fs.c
+_iscntrl.rel: _iscntrl.c
+_isdigit.rel: _isdigit.c
+_isgraph.rel: _isgraph.c
+_islower.rel: _islower.c
+_isprint.rel: _isprint.c
+_ispunct.rel: _ispunct.c ../../device/include/ctype.h \
+  ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h
+_isspace.rel: _isspace.c
+_isupper.rel: _isupper.c
+_isxdigit.rel: _isxdigit.c
+_slong2fs.rel: _slong2fs.c
+_memcmp.rel: _memcmp.c ../../device/include/string.h
+_memcpy.rel: _memcpy.c ../../device/include/string.h \
+  ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h
+_memset.rel: _memset.c ../../device/include/string.h
+_modsint.rel: _modsint.c ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h
+_modslong.rel: _modslong.c ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h
+_moduint.rel: _moduint.c
+_modulong.rel: _modulong.c
+_mulint.rel: _mulint.c
+_mullong.rel: _mullong.c
+_ser.rel: _ser.c ../../device/include/8052.h ../../device/include/8051.h \
+  ../../device/include/ser.h
+_setjmp.rel: _setjmp.c ../../device/include/8051.h
+_spx.rel: _spx.c
+_startup.rel: _startup.c
+_strchr.rel: _strchr.c ../../device/include/string.h
+_strcmp.rel: _strcmp.c ../../device/include/string.h \
+  ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h
+_strcpy.rel: _strcpy.c ../../device/include/string.h \
+  ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h
+_strcspn.rel: _strcspn.c ../../device/include/string.h
+_strlen.rel: _strlen.c ../../device/include/string.h
+_strncat.rel: _strncat.c ../../device/include/string.h
+_strncmp.rel: _strncmp.c ../../device/include/string.h
+_strncpy.rel: _strncpy.c ../../device/include/string.h
+_strpbrk.rel: _strpbrk.c ../../device/include/string.h
+_strrchr.rel: _strrchr.c ../../device/include/string.h
+_strspn.rel: _strspn.c ../../device/include/string.h
+_strstr.rel: _strstr.c ../../device/include/string.h
+_strtok.rel: _strtok.c ../../device/include/string.h
+_uchar2fs.rel: _uchar2fs.c
+_uint2fs.rel: _uint2fs.c
+_ulong2fs.rel: _ulong2fs.c
+malloc.rel: malloc.c
+serial.rel: serial.c ../../device/include/8052.h \
+  ../../device/include/8051.h
+ser_ir.rel: ser_ir.c ../../device/include/ser_ir.h \
+  ../../device/include/8051.h
+printfl.rel: printfl.c ../../device/include/stdarg.h \
+  ../../device/include/stdio.h ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h ../../device/include/8051.h
+printf_large.rel: printf_large.c ../../device/include/stdarg.h \
+  ../../device/include/stdio.h ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h
+vprintf.rel: vprintf.c ../../device/include/stdarg.h \
+  ../../device/include/string.h ../../device/include/ctype.h \
+  ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h \
+  ../../device/include/stdio.h
+puts.rel: puts.c
+gets.rel: gets.c ../../device/include/stdio.h \
+  ../../device/include/stdarg.h ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h
+assert.rel: assert.c ../../device/include/stdio.h \
+  ../../device/include/stdarg.h ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h \
+  ../../device/include/stdlib.h
+_strcat.rel: _strcat.c ../../device/include/string.h
+time.rel: time.c ../../device/include/stdio.h \
+  ../../device/include/stdarg.h ../../device/include/sdcc-lib.h \
+  ../../device/include/asm/default/features.h ../../device/include/time.h
+printf_fast.rel: printf_fast.c

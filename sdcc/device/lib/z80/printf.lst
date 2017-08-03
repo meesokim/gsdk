@@ -1,0 +1,739 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:47 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module printf
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl __char_emitter
+                             12 	.globl __printf
+                             13 	.globl __printn
+                             14 	.globl _printf
+                             15 ;--------------------------------------------------------
+                             16 ; special function registers
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits 
+                             20 ;--------------------------------------------------------
+                             21 ;--------------------------------------------------------
+                             22 ; internal ram data
+                             23 ;--------------------------------------------------------
+                             24 	.area _DATA
+                             25 ;--------------------------------------------------------
+                             26 ; overlayable items in internal ram 
+                             27 ;--------------------------------------------------------
+                             28 	.area _OVERLAY
+                             29 ;--------------------------------------------------------
+                             30 ; indirectly addressable internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area _ISEG
+                             33 ;--------------------------------------------------------
+                             34 ; bit data
+                             35 ;--------------------------------------------------------
+                             36 	.area _BSEG
+                             37 ;--------------------------------------------------------
+                             38 ; external ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area _XSEG
+                             41 ;--------------------------------------------------------
+                             42 ; global & static initialisations
+                             43 ;--------------------------------------------------------
+                             44 	.area _GSINIT
+                             45 	.area _GSFINAL
+                             46 	.area _GSINIT
+                             47 ;--------------------------------------------------------
+                             48 ; Home
+                             49 ;--------------------------------------------------------
+                             50 	.area _HOME
+                             51 	.area _CODE
+                             52 ;--------------------------------------------------------
+                             53 ; code
+                             54 ;--------------------------------------------------------
+                             55 	.area _CODE
+                             56 ;	printf.c 13
+                             57 ;	genLabel
+                             58 ;	genFunction
+                             59 ;	---------------------------------
+                             60 ; Function _printn
+                             61 ; ---------------------------------
+   0000                      62 ____printn_start:
+   0000                      63 __printn:
+   0000 DD E5                64 	push	ix
+   0002 DD 21 00 00          65 	ld	ix,#0
+   0006 DD 39                66 	add	ix,sp
+                             67 ;	printf.c 15
+                             68 ;	printf.c 16
+                             69 ;	genIfx
+                             70 ;	AOP_STK for 
+   0008 AF                   71 	xor	a,a
+   0009 DD B6 08             72 	or	a,8(ix)
+   000C CAr48s00             73 	jp	z,00102$
+                             74 ;	genAssign
+                             75 ;	AOP_STK for 
+   000F DD 4E 04             76 	ld	c,4(ix)
+   0012 DD 46 05             77 	ld	b,5(ix)
+                             78 ;	genCmpLt
+   0015 78                   79 	ld	a,b
+   0016 CB 7F                80 	bit	7,a
+   0018 CAr48s00             81 	jp	z,00102$
+                             82 ;	printf.c 17
+                             83 ;	genAssign
+                             84 ;	AOP_STK for 
+   001B DD 4E 09             85 	ld	c,9(ix)
+   001E DD 46 0A             86 	ld	b,10(ix)
+                             87 ;	genIpush
+                             88 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                             89 ;	AOP_STK for 
+   0021 DD 6E 0B             90 	ld	l,11(ix)
+   0024 DD 66 0C             91 	ld	h,12(ix)
+   0027 E5                   92 	push	hl
+                             93 ;	genIpush
+   0028 3E 2D                94 	ld	a,#0x2D
+   002A F5                   95 	push	af
+   002B 33                   96 	inc	sp
+                             97 ;	genPcall
+   002C 21r33s00             98 	ld	hl,#00111$
+   002F E5                   99 	push	hl
+   0030 69                  100 	ld	l,c
+   0031 60                  101 	ld	h,b
+   0032 E9                  102 	jp	(hl)
+   0033                     103 00111$:
+   0033 E1                  104 	pop	hl
+   0034 33                  105 	inc	sp
+                            106 ;	printf.c 18
+                            107 ;	genAssign
+                            108 ;	AOP_STK for 
+   0035 DD 4E 04            109 	ld	c,4(ix)
+   0038 DD 46 05            110 	ld	b,5(ix)
+                            111 ;	genUminus
+   003B AF                  112 	xor     a,a
+   003C 99                  113 	sbc	a,c
+   003D 4F                  114 	ld	c,a
+   003E 3E 00               115 	ld	a,#0x00
+   0040 98                  116 	sbc	a,b
+   0041 47                  117 	ld	b,a
+                            118 ;	genAssign
+                            119 ;	AOP_STK for 
+   0042 DD 71 04            120 	ld	4(ix),c
+   0045 DD 70 05            121 	ld	5(ix),b
+                            122 ;	genLabel
+   0048                     123 00102$:
+                            124 ;	printf.c 20
+                            125 ;	genCmpLt
+                            126 ;	AOP_STK for 
+                            127 ;	AOP_STK for 
+   0048 DD 7E 04            128 	ld	a,4(ix)
+   004B DD 96 06            129 	sub	a,6(ix)
+   004E DD 7E 05            130 	ld	a,5(ix)
+   0051 DD 9E 07            131 	sbc	a,7(ix)
+   0054 DAr8Es00            132 	jp	c,00105$
+                            133 ;	printf.c 21
+                            134 ;	genIpush
+                            135 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                            136 ;	AOP_STK for 
+   0057 DD 6E 06            137 	ld	l,6(ix)
+   005A DD 66 07            138 	ld	h,7(ix)
+   005D E5                  139 	push	hl
+                            140 ;	genIpush
+                            141 ;	AOP_STK for 
+   005E DD 6E 04            142 	ld	l,4(ix)
+   0061 DD 66 05            143 	ld	h,5(ix)
+   0064 E5                  144 	push	hl
+                            145 ;	genCall
+   0065 CDr00s00            146 	call	__divuint_rrx_s
+   0068 44                  147 	ld	b,h
+   0069 4D                  148 	ld	c,l
+   006A E1                  149 	pop	hl
+   006B E1                  150 	pop	hl
+                            151 ;	genIpush
+                            152 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                            153 ;	AOP_STK for 
+   006C DD 6E 0B            154 	ld	l,11(ix)
+   006F DD 66 0C            155 	ld	h,12(ix)
+   0072 E5                  156 	push	hl
+                            157 ;	genIpush
+                            158 ;	AOP_STK for 
+   0073 DD 6E 09            159 	ld	l,9(ix)
+   0076 DD 66 0A            160 	ld	h,10(ix)
+   0079 E5                  161 	push	hl
+                            162 ;	genIpush
+   007A 3E 00               163 	ld	a,#0x00
+   007C F5                  164 	push	af
+   007D 33                  165 	inc	sp
+                            166 ;	genIpush
+                            167 ;	AOP_STK for 
+   007E DD 6E 06            168 	ld	l,6(ix)
+   0081 DD 66 07            169 	ld	h,7(ix)
+   0084 E5                  170 	push	hl
+                            171 ;	genIpush
+   0085 C5                  172 	push	bc
+                            173 ;	genCall
+   0086 CDr00s00            174 	call	__printn
+   0089 21 09 00            175 	ld	hl,#9
+   008C 39                  176 	add	hl,sp
+   008D F9                  177 	ld	sp,hl
+                            178 ;	genLabel
+   008E                     179 00105$:
+                            180 ;	printf.c 22
+                            181 ;	genAssign
+                            182 ;	AOP_STK for 
+   008E DD 4E 09            183 	ld	c,9(ix)
+   0091 DD 46 0A            184 	ld	b,10(ix)
+                            185 ;	genIpush
+                            186 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   0094 C5                  187 	push	bc
+                            188 ;	AOP_STK for 
+   0095 DD 6E 06            189 	ld	l,6(ix)
+   0098 DD 66 07            190 	ld	h,7(ix)
+   009B E5                  191 	push	hl
+                            192 ;	genIpush
+                            193 ;	AOP_STK for 
+   009C DD 6E 04            194 	ld	l,4(ix)
+   009F DD 66 05            195 	ld	h,5(ix)
+   00A2 E5                  196 	push	hl
+                            197 ;	genCall
+   00A3 CDr00s00            198 	call	__moduint_rrx_s
+   00A6 54                  199 	ld	d,h
+   00A7 5D                  200 	ld	e,l
+   00A8 E1                  201 	pop	hl
+   00A9 E1                  202 	pop	hl
+   00AA C1                  203 	pop	bc
+                            204 ;	genPlus
+                            205 ;	Can't optimise plus by inc, falling back to the normal way
+   00AB 21rC9s00            206 	ld	hl,#__str_0
+   00AE 19                  207 	add	hl,de
+   00AF 5D                  208 	ld	e,l
+   00B0 54                  209 	ld	d,h
+                            210 ;	genPointerGet
+   00B1 1A                  211 	ld	a,(de)
+   00B2 5F                  212 	ld	e,a
+                            213 ;	genIpush
+                            214 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                            215 ;	AOP_STK for 
+   00B3 DD 6E 0B            216 	ld	l,11(ix)
+   00B6 DD 66 0C            217 	ld	h,12(ix)
+   00B9 E5                  218 	push	hl
+                            219 ;	genIpush
+   00BA 7B                  220 	ld	a,e
+   00BB F5                  221 	push	af
+   00BC 33                  222 	inc	sp
+                            223 ;	genPcall
+   00BD 21rC4s00            224 	ld	hl,#00112$
+   00C0 E5                  225 	push	hl
+   00C1 69                  226 	ld	l,c
+   00C2 60                  227 	ld	h,b
+   00C3 E9                  228 	jp	(hl)
+   00C4                     229 00112$:
+   00C4 E1                  230 	pop	hl
+   00C5 33                  231 	inc	sp
+                            232 ;	genLabel
+   00C6                     233 00106$:
+                            234 ;	genEndFunction
+   00C6 DD E1               235 	pop	ix
+                            236 
+   00C8 C9                  237 	ret
+   00C9                     238 ____printn_end:
+   00C9                     239 __str_0:
+   00C9 30 31 32 33 34 35   240 	.ascii "0123456789ABCDEF"
+        36 37 38 39 41 42
+        43 44 45 46
+   00D9 00                  241 	.db 0x00
+                            242 ;	printf.c 25
+                            243 ;	genLabel
+                            244 ;	genFunction
+                            245 ;	---------------------------------
+                            246 ; Function _printf
+                            247 ; ---------------------------------
+   00DA                     248 ____printf_start:
+   00DA                     249 __printf:
+   00DA DD E5               250 	push	ix
+   00DC DD 21 00 00         251 	ld	ix,#0
+   00E0 DD 39               252 	add	ix,sp
+   00E2 21 FE FF            253 	ld	hl,#-2
+   00E5 39                  254 	add	hl,sp
+   00E6 F9                  255 	ld	sp,hl
+                            256 
+                            257 ;	printf.c 27
+                            258 ;	genAssign
+                            259 ;	AOP_STK for 
+   00E7 DD 4E 06            260 	ld	c,6(ix)
+   00EA DD 46 07            261 	ld	b,7(ix)
+                            262 ;	genLabel
+   00ED                     263 00113$:
+                            264 ;	genAssign
+                            265 ;	AOP_STK for 
+   00ED DD 5E 04            266 	ld	e,4(ix)
+   00F0 DD 56 05            267 	ld	d,5(ix)
+                            268 ;	genPointerGet
+                            269 ;	AOP_STK for __printf_sloc0_1_0
+   00F3 1A                  270 	ld	a,(de)
+                            271 ;	genIfx
+                            272 ;	AOP_STK for __printf_sloc0_1_0
+   00F4 DD 77 FF            273 	ld      -1(ix),a
+   00F7 B7                  274 	or      a,a
+   00F8 CAr55s02            275 	jp	z,00116$
+                            276 ;	printf.c 28
+                            277 ;	genCmpEq
+                            278 ;	AOP_STK for __printf_sloc0_1_0
+                            279 ; genCmpEq: left 1, right 1, result 0
+   00FB DD 7E FF            280 	ld	a,-1(ix)
+   00FE FE 25               281 	cp	a,#0x25
+   0100 CAr06s01            282 	jp	z,00129$
+   0103                     283 00128$:
+   0103 C3r2Bs02            284 	jp	00111$
+   0106                     285 00129$:
+                            286 ;	printf.c 29
+                            287 ;	genPlus
+                            288 ;	genPlusIncr
+   0106 13                  289 	inc	de
+                            290 ;	genAssign
+                            291 ;	AOP_STK for 
+   0107 DD 73 04            292 	ld	4(ix),e
+   010A DD 72 05            293 	ld	5(ix),d
+                            294 ;	genPointerGet
+   010D 1A                  295 	ld	a,(de)
+                            296 ;	genCmpEq
+                            297 ; genCmpEq: left 1, right 1, result 0
+   010E 5F                  298 	ld	e,a
+   010F FE 63               299 	cp	a,#0x63
+   0111 CAr2Fs01            300 	jp	z,00101$
+   0114                     301 00130$:
+                            302 ;	genCmpEq
+                            303 ; genCmpEq: left 1, right 1, result 0
+   0114 7B                  304 	ld	a,e
+   0115 FE 64               305 	cp	a,#0x64
+   0117 CAr8Ds01            306 	jp	z,00103$
+   011A                     307 00131$:
+                            308 ;	genCmpEq
+                            309 ; genCmpEq: left 1, right 1, result 0
+   011A 7B                  310 	ld	a,e
+   011B FE 73               311 	cp	a,#0x73
+   011D CArF3s01            312 	jp	z,00108$
+   0120                     313 00132$:
+                            314 ;	genCmpEq
+                            315 ; genCmpEq: left 1, right 1, result 0
+   0120 7B                  316 	ld	a,e
+   0121 FE 75               317 	cp	a,#0x75
+   0123 CAr5As01            318 	jp	z,00102$
+   0126                     319 00133$:
+                            320 ;	genCmpEq
+                            321 ; genCmpEq: left 1, right 1, result 0
+   0126 7B                  322 	ld	a,e
+   0127 FE 78               323 	cp	a,#0x78
+   0129 CArC0s01            324 	jp	z,00104$
+   012C                     325 00134$:
+                            326 ;	genGoto
+   012C C3r40s02            327 	jp	00112$
+                            328 ;	printf.c 34
+                            329 ;	genLabel
+   012F                     330 00101$:
+                            331 ;	printf.c 31
+                            332 ;	genPlus
+                            333 ;	AOP_STK for 
+                            334 ;	genPlusIncr
+   012F DD 5E 0A            335 	ld	e,10(ix)
+   0132 DD 56 0B            336 	ld	d,11(ix)
+   0135 13                  337 	inc	de
+   0136 13                  338 	inc	de
+                            339 ;	genAssign
+                            340 ;	AOP_STK for 
+   0137 DD 73 0A            341 	ld	10(ix),e
+   013A DD 72 0B            342 	ld	11(ix),d
+                            343 ;	genMinus
+   013D 1B                  344 	dec	de
+   013E 1B                  345 	dec	de
+                            346 ;	genPointerGet
+   013F 6B                  347 	ld	l,e
+   0140 62                  348 	ld	h,d
+   0141 5E                  349 	ld	e,(hl)
+   0142 23                  350 	inc	hl
+   0143 56                  351 	ld	d,(hl)
+                            352 ;	genCast
+                            353 ; Removed redundent load
+                            354 ;	printf.c 32
+                            355 ;	genIpush
+                            356 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                            357 ;	AOP_STK for 
+   0144 DD 6E 08            358 	ld	l,8(ix)
+   0147 DD 66 09            359 	ld	h,9(ix)
+   014A E5                  360 	push	hl
+                            361 ;	genIpush
+   014B 7B                  362 	ld	a,e
+   014C F5                  363 	push	af
+   014D 33                  364 	inc	sp
+                            365 ;	genPcall
+   014E 21r55s01            366 	ld	hl,#00135$
+   0151 E5                  367 	push	hl
+   0152 69                  368 	ld	l,c
+   0153 60                  369 	ld	h,b
+   0154 E9                  370 	jp	(hl)
+   0155                     371 00135$:
+   0155 E1                  372 	pop	hl
+   0156 33                  373 	inc	sp
+                            374 ;	printf.c 33
+                            375 ;	genGoto
+   0157 C3r40s02            376 	jp	00112$
+                            377 ;	printf.c 40
+                            378 ;	genLabel
+   015A                     379 00102$:
+                            380 ;	printf.c 37
+                            381 ;	genPlus
+                            382 ;	AOP_STK for 
+                            383 ;	genPlusIncr
+   015A DD 5E 0A            384 	ld	e,10(ix)
+   015D DD 56 0B            385 	ld	d,11(ix)
+   0160 13                  386 	inc	de
+   0161 13                  387 	inc	de
+                            388 ;	genAssign
+                            389 ;	AOP_STK for 
+   0162 DD 73 0A            390 	ld	10(ix),e
+   0165 DD 72 0B            391 	ld	11(ix),d
+                            392 ;	genMinus
+   0168 1B                  393 	dec	de
+   0169 1B                  394 	dec	de
+                            395 ;	genPointerGet
+   016A 6B                  396 	ld	l,e
+   016B 62                  397 	ld	h,d
+   016C 5E                  398 	ld	e,(hl)
+   016D 23                  399 	inc	hl
+   016E 56                  400 	ld	d,(hl)
+                            401 ;	genAssign
+                            402 ;	(registers are the same)
+                            403 ;	printf.c 38
+                            404 ;	genIpush
+                            405 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   016F C5                  406 	push	bc
+                            407 ;	AOP_STK for 
+   0170 DD 6E 08            408 	ld	l,8(ix)
+   0173 DD 66 09            409 	ld	h,9(ix)
+   0176 E5                  410 	push	hl
+                            411 ;	genIpush
+   0177 C5                  412 	push	bc
+                            413 ;	genIpush
+   0178 3E 00               414 	ld	a,#0x00
+   017A F5                  415 	push	af
+   017B 33                  416 	inc	sp
+                            417 ;	genIpush
+   017C 21 0A 00            418 	ld	hl,#0x000A
+   017F E5                  419 	push	hl
+                            420 ;	genIpush
+   0180 D5                  421 	push	de
+                            422 ;	genCall
+   0181 CDr00s00            423 	call	__printn
+   0184 21 09 00            424 	ld	hl,#9
+   0187 39                  425 	add	hl,sp
+   0188 F9                  426 	ld	sp,hl
+   0189 C1                  427 	pop	bc
+                            428 ;	printf.c 39
+                            429 ;	genGoto
+   018A C3r40s02            430 	jp	00112$
+                            431 ;	printf.c 46
+                            432 ;	genLabel
+   018D                     433 00103$:
+                            434 ;	printf.c 43
+                            435 ;	genPlus
+                            436 ;	AOP_STK for 
+                            437 ;	genPlusIncr
+   018D DD 5E 0A            438 	ld	e,10(ix)
+   0190 DD 56 0B            439 	ld	d,11(ix)
+   0193 13                  440 	inc	de
+   0194 13                  441 	inc	de
+                            442 ;	genAssign
+                            443 ;	AOP_STK for 
+   0195 DD 73 0A            444 	ld	10(ix),e
+   0198 DD 72 0B            445 	ld	11(ix),d
+                            446 ;	genMinus
+   019B 1B                  447 	dec	de
+   019C 1B                  448 	dec	de
+                            449 ;	genPointerGet
+   019D 6B                  450 	ld	l,e
+   019E 62                  451 	ld	h,d
+   019F 5E                  452 	ld	e,(hl)
+   01A0 23                  453 	inc	hl
+   01A1 56                  454 	ld	d,(hl)
+                            455 ;	genAssign
+                            456 ;	(registers are the same)
+                            457 ;	printf.c 44
+                            458 ;	genIpush
+                            459 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   01A2 C5                  460 	push	bc
+                            461 ;	AOP_STK for 
+   01A3 DD 6E 08            462 	ld	l,8(ix)
+   01A6 DD 66 09            463 	ld	h,9(ix)
+   01A9 E5                  464 	push	hl
+                            465 ;	genIpush
+   01AA C5                  466 	push	bc
+                            467 ;	genIpush
+   01AB 3E 01               468 	ld	a,#0x01
+   01AD F5                  469 	push	af
+   01AE 33                  470 	inc	sp
+                            471 ;	genIpush
+   01AF 21 0A 00            472 	ld	hl,#0x000A
+   01B2 E5                  473 	push	hl
+                            474 ;	genIpush
+   01B3 D5                  475 	push	de
+                            476 ;	genCall
+   01B4 CDr00s00            477 	call	__printn
+   01B7 21 09 00            478 	ld	hl,#9
+   01BA 39                  479 	add	hl,sp
+   01BB F9                  480 	ld	sp,hl
+   01BC C1                  481 	pop	bc
+                            482 ;	printf.c 45
+                            483 ;	genGoto
+   01BD C3r40s02            484 	jp	00112$
+                            485 ;	printf.c 52
+                            486 ;	genLabel
+   01C0                     487 00104$:
+                            488 ;	printf.c 49
+                            489 ;	genPlus
+                            490 ;	AOP_STK for 
+                            491 ;	genPlusIncr
+   01C0 DD 5E 0A            492 	ld	e,10(ix)
+   01C3 DD 56 0B            493 	ld	d,11(ix)
+   01C6 13                  494 	inc	de
+   01C7 13                  495 	inc	de
+                            496 ;	genAssign
+                            497 ;	AOP_STK for 
+   01C8 DD 73 0A            498 	ld	10(ix),e
+   01CB DD 72 0B            499 	ld	11(ix),d
+                            500 ;	genMinus
+   01CE 1B                  501 	dec	de
+   01CF 1B                  502 	dec	de
+                            503 ;	genPointerGet
+   01D0 6B                  504 	ld	l,e
+   01D1 62                  505 	ld	h,d
+   01D2 5E                  506 	ld	e,(hl)
+   01D3 23                  507 	inc	hl
+   01D4 56                  508 	ld	d,(hl)
+                            509 ;	genAssign
+                            510 ;	(registers are the same)
+                            511 ;	printf.c 50
+                            512 ;	genIpush
+                            513 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   01D5 C5                  514 	push	bc
+                            515 ;	AOP_STK for 
+   01D6 DD 6E 08            516 	ld	l,8(ix)
+   01D9 DD 66 09            517 	ld	h,9(ix)
+   01DC E5                  518 	push	hl
+                            519 ;	genIpush
+   01DD C5                  520 	push	bc
+                            521 ;	genIpush
+   01DE 3E 00               522 	ld	a,#0x00
+   01E0 F5                  523 	push	af
+   01E1 33                  524 	inc	sp
+                            525 ;	genIpush
+   01E2 21 10 00            526 	ld	hl,#0x0010
+   01E5 E5                  527 	push	hl
+                            528 ;	genIpush
+   01E6 D5                  529 	push	de
+                            530 ;	genCall
+   01E7 CDr00s00            531 	call	__printn
+   01EA 21 09 00            532 	ld	hl,#9
+   01ED 39                  533 	add	hl,sp
+   01EE F9                  534 	ld	sp,hl
+   01EF C1                  535 	pop	bc
+                            536 ;	printf.c 51
+                            537 ;	genGoto
+   01F0 C3r40s02            538 	jp	00112$
+                            539 ;	printf.c 60
+                            540 ;	genLabel
+   01F3                     541 00108$:
+                            542 ;	printf.c 55
+                            543 ;	genPlus
+                            544 ;	AOP_STK for 
+                            545 ;	genPlusIncr
+   01F3 DD 5E 0A            546 	ld	e,10(ix)
+   01F6 DD 56 0B            547 	ld	d,11(ix)
+   01F9 13                  548 	inc	de
+   01FA 13                  549 	inc	de
+                            550 ;	genAssign
+                            551 ;	AOP_STK for 
+   01FB DD 73 0A            552 	ld	10(ix),e
+   01FE DD 72 0B            553 	ld	11(ix),d
+                            554 ;	genMinus
+   0201 1B                  555 	dec	de
+   0202 1B                  556 	dec	de
+                            557 ;	genPointerGet
+   0203 6B                  558 	ld	l,e
+   0204 62                  559 	ld	h,d
+   0205 5E                  560 	ld	e,(hl)
+   0206 23                  561 	inc	hl
+   0207 56                  562 	ld	d,(hl)
+                            563 ;	genAssign
+                            564 ;	(registers are the same)
+                            565 ;	printf.c 56
+                            566 ;	genAssign
+                            567 ;	(registers are the same)
+                            568 ;	genLabel
+   0208                     569 00105$:
+                            570 ;	genPointerGet
+                            571 ;	AOP_STK for __printf_sloc1_1_0
+   0208 1A                  572 	ld	a,(de)
+                            573 ;	genIfx
+                            574 ;	AOP_STK for __printf_sloc1_1_0
+   0209 DD 77 FE            575 	ld      -2(ix),a
+   020C B7                  576 	or      a,a
+   020D CAr40s02            577 	jp	z,00112$
+                            578 ;	printf.c 57
+                            579 ;	genIpush
+                            580 ; _saveRegsForCall: sendSetSize: 0 deInUse: 1 bcInUse: 0 deSending: 0
+   0210 D5                  581 	push	de
+                            582 ;	AOP_STK for 
+   0211 DD 6E 08            583 	ld	l,8(ix)
+   0214 DD 66 09            584 	ld	h,9(ix)
+   0217 E5                  585 	push	hl
+                            586 ;	genIpush
+                            587 ;	AOP_STK for __printf_sloc1_1_0
+   0218 DD 7E FE            588 	ld	a,-2(ix)
+   021B F5                  589 	push	af
+   021C 33                  590 	inc	sp
+                            591 ;	genPcall
+   021D 21r24s02            592 	ld	hl,#00136$
+   0220 E5                  593 	push	hl
+   0221 69                  594 	ld	l,c
+   0222 60                  595 	ld	h,b
+   0223 E9                  596 	jp	(hl)
+   0224                     597 00136$:
+   0224 E1                  598 	pop	hl
+   0225 33                  599 	inc	sp
+   0226 D1                  600 	pop	de
+                            601 ;	printf.c 58
+                            602 ;	genPlus
+                            603 ;	genPlusIncr
+   0227 13                  604 	inc	de
+                            605 ;	genGoto
+   0228 C3r08s02            606 	jp	00105$
+                            607 ;	printf.c 61
+                            608 ;	genLabel
+   022B                     609 00111$:
+                            610 ;	printf.c 64
+                            611 ;	genIpush
+                            612 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                            613 ;	AOP_STK for 
+   022B DD 6E 08            614 	ld	l,8(ix)
+   022E DD 66 09            615 	ld	h,9(ix)
+   0231 E5                  616 	push	hl
+                            617 ;	genIpush
+                            618 ;	AOP_STK for __printf_sloc0_1_0
+   0232 DD 7E FF            619 	ld	a,-1(ix)
+   0235 F5                  620 	push	af
+   0236 33                  621 	inc	sp
+                            622 ;	genPcall
+   0237 21r3Es02            623 	ld	hl,#00137$
+   023A E5                  624 	push	hl
+   023B 69                  625 	ld	l,c
+   023C 60                  626 	ld	h,b
+   023D E9                  627 	jp	(hl)
+   023E                     628 00137$:
+   023E E1                  629 	pop	hl
+   023F 33                  630 	inc	sp
+                            631 ;	genLabel
+   0240                     632 00112$:
+                            633 ;	printf.c 66
+                            634 ;	genAssign
+                            635 ;	AOP_STK for 
+   0240 DD 5E 04            636 	ld	e,4(ix)
+   0243 DD 56 05            637 	ld	d,5(ix)
+                            638 ;	genPlus
+                            639 ;	AOP_STK for 
+                            640 ;	genPlusIncr
+                            641 ;	Can't optimise plus by inc, falling back to the normal way
+   0246 7B                  642 	ld	a,e
+   0247 C6 01               643 	add	a,#0x01
+   0249 DD 77 04            644 	ld	4(ix),a
+   024C 7A                  645 	ld	a,d
+   024D CE 00               646 	adc	a,#0x00
+   024F DD 77 05            647 	ld	5(ix),a
+                            648 ;	genGoto
+   0252 C3rEDs00            649 	jp	00113$
+                            650 ;	genLabel
+   0255                     651 00116$:
+                            652 ;	genEndFunction
+   0255 DD F9               653 	ld	sp,ix
+   0257 DD E1               654 	pop	ix
+                            655 
+   0259 C9                  656 	ret
+   025A                     657 ____printf_end:
+                            658 ;	printf.c 72
+                            659 ;	genLabel
+                            660 ;	genFunction
+                            661 ;	---------------------------------
+                            662 ; Function _char_emitter
+                            663 ; ---------------------------------
+   025A                     664 ____char_emitter_start:
+   025A                     665 __char_emitter:
+   025A DD E5               666 	push	ix
+   025C DD 21 00 00         667 	ld	ix,#0
+   0260 DD 39               668 	add	ix,sp
+                            669 ;	printf.c 77
+                            670 ;	genIpush
+                            671 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                            672 ;	AOP_STK for 
+   0262 DD 7E 04            673 	ld	a,4(ix)
+   0265 F5                  674 	push	af
+   0266 33                  675 	inc	sp
+                            676 ;	genCall
+   0267 CDr00s00            677 	call	_putchar
+   026A 33                  678 	inc	sp
+                            679 ;	genLabel
+   026B                     680 00101$:
+                            681 ;	genEndFunction
+   026B DD E1               682 	pop	ix
+                            683 
+   026D C9                  684 	ret
+   026E                     685 ____char_emitter_end:
+                            686 ;	printf.c 80
+                            687 ;	genLabel
+                            688 ;	genFunction
+                            689 ;	---------------------------------
+                            690 ; Function printf
+                            691 ; ---------------------------------
+   026E                     692 ___printf_start:
+   026E                     693 _printf:
+   026E DD E5               694 	push	ix
+   0270 DD 21 00 00         695 	ld	ix,#0
+   0274 DD 39               696 	add	ix,sp
+                            697 ;	printf.c 83
+                            698 ;	genAddrOf
+   0276 21 04 00            699 	ld	hl,#4+0+0+0
+   0279 39                  700 	add	hl,sp
+   027A 4D                  701 	ld	c,l
+   027B 44                  702 	ld	b,h
+                            703 ;	genPlus
+                            704 ;	genPlusIncr
+   027C 03                  705 	inc	bc
+   027D 03                  706 	inc	bc
+                            707 ;	printf.c 85
+                            708 ;	genIpush
+                            709 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   027E C5                  710 	push	bc
+                            711 ;	genIpush
+   027F 21 00 00            712 	ld	hl,#0x0000
+   0282 E5                  713 	push	hl
+                            714 ;	genIpush
+   0283 21r5As02            715 	ld	hl,#__char_emitter
+   0286 E5                  716 	push	hl
+                            717 ;	genIpush
+                            718 ;	AOP_STK for 
+   0287 DD 6E 04            719 	ld	l,4(ix)
+   028A DD 66 05            720 	ld	h,5(ix)
+   028D E5                  721 	push	hl
+                            722 ;	genCall
+   028E CDrDAs00            723 	call	__printf
+   0291 21 08 00            724 	ld	hl,#8
+   0294 39                  725 	add	hl,sp
+   0295 F9                  726 	ld	sp,hl
+                            727 ;	printf.c 88
+                            728 ;	genRet
+   0296 21 00 00            729 	ld	hl,#0x0000
+                            730 ;	genLabel
+   0299                     731 00101$:
+                            732 ;	genEndFunction
+   0299 DD E1               733 	pop	ix
+                            734 
+   029B C9                  735 	ret
+   029C                     736 ___printf_end:
+                            737 	.area _CODE

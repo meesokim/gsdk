@@ -1,0 +1,369 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:49 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module _memcpy
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _memcpy
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	_memcpy.c 31
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function memcpy
+                             58 ; ---------------------------------
+   0000                      59 ___memcpy_start:
+   0000                      60 _memcpy:
+   0000 E8 FC                61 	lda	sp,-4(sp)
+                             62 ;	_memcpy.c 41
+                             63 ;	genAssign
+                             64 ;	(operands are equal 3)
+                             65 ;	genAssign
+                             66 ;	AOP_STK for 
+                             67 ;	AOP_STK for _memcpy_d_1_1
+   0002 F8 06                68 	lda	hl,6(sp)
+   0004 2A                   69 	ld	a,(hl+)
+   0005 5E                   70 	ld	e,(hl)
+   0006 F8 02                71 	lda	hl,2(sp)
+   0008 22                   72 	ld	(hl+),a
+   0009 73                   73 	ld	(hl),e
+                             74 ;	_memcpy.c 42
+                             75 ;	genAssign
+                             76 ;	(operands are equal 3)
+                             77 ;	genAssign
+                             78 ;	AOP_STK for 
+                             79 ;	AOP_STK for _memcpy_s_1_1
+   000A F8 08                80 	lda	hl,8(sp)
+   000C 2A                   81 	ld	a,(hl+)
+   000D 5E                   82 	ld	e,(hl)
+   000E F8 00                83 	lda	hl,0(sp)
+   0010 22                   84 	ld	(hl+),a
+   0011 73                   85 	ld	(hl),e
+                             86 ;	_memcpy.c 43
+                             87 ;	genUminus
+                             88 ;	AOP_STK for 
+   0012 AF                   89 	xor	a,a
+   0013 F8 0A                90 	lda	hl,10(sp)
+   0015 3E 00                91 	ld	a,#0x00
+   0017 9E                   92 	sbc	a,(hl)
+   0018 4F                   93 	ld	c,a
+   0019 23                   94 	inc	hl
+   001A 3E 00                95 	ld	a,#0x00
+   001C 9E                   96 	sbc	a,(hl)
+   001D 47                   97 	ld	b,a
+                             98 ;	genAssign
+                             99 ;	(registers are the same)
+                            100 ;	_memcpy.c 45
+                            101 ;	genRightShift
+   001E CB 28               102 	sra	b
+   0020 CB 19               103 	rr	c
+   0022 CB 28               104 	sra	b
+   0024 CB 19               105 	rr	c
+                            106 ;	_memcpy.c 47
+                            107 ;	genLabel
+   0026                     108 00101$:
+                            109 ;	genIfx
+   0026 79                  110 	ld	a,c
+   0027 B0                  111 	or	a,b
+   0028 CAr8Fs00            112 	jp	z,00103$
+                            113 ;	_memcpy.c 48
+                            114 ;	genPointerGet
+                            115 ;	AOP_STK for _memcpy_s_1_1
+   002B F8 00               116 	lda	hl,0(sp)
+   002D 5E                  117 	ld	e,(hl)
+   002E 23                  118 	inc	hl
+   002F 56                  119 	ld	d,(hl)
+   0030 1A                  120 	ld	a,(de)
+                            121 ;	genPlus
+                            122 ;	AOP_STK for _memcpy_s_1_1
+                            123 ;	genPlusIncr
+   0031 2B                  124 	dec	hl
+   0032 34                  125 	inc	(hl)
+   0033 20 02               126 	jr	nz,00116$
+   0035 23                  127 	inc	hl
+   0036 34                  128 	inc	(hl)
+   0037                     129 00116$:
+                            130 ;	genAssign (pointer)
+                            131 ;	AOP_STK for _memcpy_d_1_1
+   0037 F8 02               132 	lda	hl,2(sp)
+   0039 5E                  133 	ld	e,(hl)
+   003A 23                  134 	inc	hl
+   003B 56                  135 	ld	d,(hl)
+   003C 12                  136 	ld	(de),a
+                            137 ;	genPlus
+                            138 ;	AOP_STK for _memcpy_d_1_1
+                            139 ;	genPlusIncr
+   003D 2B                  140 	dec	hl
+   003E 34                  141 	inc	(hl)
+   003F 20 02               142 	jr	nz,00117$
+   0041 23                  143 	inc	hl
+   0042 34                  144 	inc	(hl)
+   0043                     145 00117$:
+                            146 ;	_memcpy.c 49
+                            147 ;	genPointerGet
+                            148 ;	AOP_STK for _memcpy_s_1_1
+   0043 F8 00               149 	lda	hl,0(sp)
+   0045 5E                  150 	ld	e,(hl)
+   0046 23                  151 	inc	hl
+   0047 56                  152 	ld	d,(hl)
+   0048 1A                  153 	ld	a,(de)
+                            154 ;	genPlus
+                            155 ;	AOP_STK for _memcpy_s_1_1
+                            156 ;	genPlusIncr
+   0049 2B                  157 	dec	hl
+   004A 34                  158 	inc	(hl)
+   004B 20 02               159 	jr	nz,00118$
+   004D 23                  160 	inc	hl
+   004E 34                  161 	inc	(hl)
+   004F                     162 00118$:
+                            163 ;	genAssign (pointer)
+                            164 ;	AOP_STK for _memcpy_d_1_1
+   004F F8 02               165 	lda	hl,2(sp)
+   0051 5E                  166 	ld	e,(hl)
+   0052 23                  167 	inc	hl
+   0053 56                  168 	ld	d,(hl)
+   0054 12                  169 	ld	(de),a
+                            170 ;	genPlus
+                            171 ;	AOP_STK for _memcpy_d_1_1
+                            172 ;	genPlusIncr
+   0055 2B                  173 	dec	hl
+   0056 34                  174 	inc	(hl)
+   0057 20 02               175 	jr	nz,00119$
+   0059 23                  176 	inc	hl
+   005A 34                  177 	inc	(hl)
+   005B                     178 00119$:
+                            179 ;	_memcpy.c 50
+                            180 ;	genPointerGet
+                            181 ;	AOP_STK for _memcpy_s_1_1
+   005B F8 00               182 	lda	hl,0(sp)
+   005D 5E                  183 	ld	e,(hl)
+   005E 23                  184 	inc	hl
+   005F 56                  185 	ld	d,(hl)
+   0060 1A                  186 	ld	a,(de)
+                            187 ;	genPlus
+                            188 ;	AOP_STK for _memcpy_s_1_1
+                            189 ;	genPlusIncr
+   0061 2B                  190 	dec	hl
+   0062 34                  191 	inc	(hl)
+   0063 20 02               192 	jr	nz,00120$
+   0065 23                  193 	inc	hl
+   0066 34                  194 	inc	(hl)
+   0067                     195 00120$:
+                            196 ;	genAssign (pointer)
+                            197 ;	AOP_STK for _memcpy_d_1_1
+   0067 F8 02               198 	lda	hl,2(sp)
+   0069 5E                  199 	ld	e,(hl)
+   006A 23                  200 	inc	hl
+   006B 56                  201 	ld	d,(hl)
+   006C 12                  202 	ld	(de),a
+                            203 ;	genPlus
+                            204 ;	AOP_STK for _memcpy_d_1_1
+                            205 ;	genPlusIncr
+   006D 2B                  206 	dec	hl
+   006E 34                  207 	inc	(hl)
+   006F 20 02               208 	jr	nz,00121$
+   0071 23                  209 	inc	hl
+   0072 34                  210 	inc	(hl)
+   0073                     211 00121$:
+                            212 ;	_memcpy.c 51
+                            213 ;	genPointerGet
+                            214 ;	AOP_STK for _memcpy_s_1_1
+   0073 F8 00               215 	lda	hl,0(sp)
+   0075 5E                  216 	ld	e,(hl)
+   0076 23                  217 	inc	hl
+   0077 56                  218 	ld	d,(hl)
+   0078 1A                  219 	ld	a,(de)
+                            220 ;	genPlus
+                            221 ;	AOP_STK for _memcpy_s_1_1
+                            222 ;	genPlusIncr
+   0079 2B                  223 	dec	hl
+   007A 34                  224 	inc	(hl)
+   007B 20 02               225 	jr	nz,00122$
+   007D 23                  226 	inc	hl
+   007E 34                  227 	inc	(hl)
+   007F                     228 00122$:
+                            229 ;	genAssign (pointer)
+                            230 ;	AOP_STK for _memcpy_d_1_1
+   007F F8 02               231 	lda	hl,2(sp)
+   0081 5E                  232 	ld	e,(hl)
+   0082 23                  233 	inc	hl
+   0083 56                  234 	ld	d,(hl)
+   0084 12                  235 	ld	(de),a
+                            236 ;	genPlus
+                            237 ;	AOP_STK for _memcpy_d_1_1
+                            238 ;	genPlusIncr
+   0085 2B                  239 	dec	hl
+   0086 34                  240 	inc	(hl)
+   0087 20 02               241 	jr	nz,00123$
+   0089 23                  242 	inc	hl
+   008A 34                  243 	inc	(hl)
+   008B                     244 00123$:
+                            245 ;	_memcpy.c 52
+                            246 ;	genPlus
+                            247 ;	genPlusIncr
+   008B 03                  248 	inc	bc
+                            249 ;	genGoto
+   008C C3r26s00            250 	jp	00101$
+                            251 ;	genLabel
+   008F                     252 00103$:
+                            253 ;	_memcpy.c 55
+                            254 ;	genAnd
+                            255 ;	AOP_STK for 
+   008F F8 0A               256 	lda	hl,10(sp)
+   0091 7E                  257 	ld	a,(hl)
+   0092 E6 02               258 	and	a,#0x02
+   0094 20 03               259 	jr	nz,00124$
+   0096 C3rC9s00            260 	jp	00105$
+   0099                     261 00124$:
+                            262 ;	_memcpy.c 56
+                            263 ;	genPointerGet
+                            264 ;	AOP_STK for _memcpy_s_1_1
+   0099 F8 00               265 	lda	hl,0(sp)
+   009B 5E                  266 	ld	e,(hl)
+   009C 23                  267 	inc	hl
+   009D 56                  268 	ld	d,(hl)
+   009E 1A                  269 	ld	a,(de)
+                            270 ;	genPlus
+                            271 ;	AOP_STK for _memcpy_s_1_1
+                            272 ;	genPlusIncr
+   009F 2B                  273 	dec	hl
+   00A0 34                  274 	inc	(hl)
+   00A1 20 02               275 	jr	nz,00125$
+   00A3 23                  276 	inc	hl
+   00A4 34                  277 	inc	(hl)
+   00A5                     278 00125$:
+                            279 ;	genAssign (pointer)
+                            280 ;	AOP_STK for _memcpy_d_1_1
+   00A5 F8 02               281 	lda	hl,2(sp)
+   00A7 5E                  282 	ld	e,(hl)
+   00A8 23                  283 	inc	hl
+   00A9 56                  284 	ld	d,(hl)
+   00AA 12                  285 	ld	(de),a
+                            286 ;	genPlus
+                            287 ;	AOP_STK for _memcpy_d_1_1
+                            288 ;	genPlusIncr
+   00AB 2B                  289 	dec	hl
+   00AC 34                  290 	inc	(hl)
+   00AD 20 02               291 	jr	nz,00126$
+   00AF 23                  292 	inc	hl
+   00B0 34                  293 	inc	(hl)
+   00B1                     294 00126$:
+                            295 ;	_memcpy.c 57
+                            296 ;	genPointerGet
+                            297 ;	AOP_STK for _memcpy_s_1_1
+   00B1 F8 00               298 	lda	hl,0(sp)
+   00B3 5E                  299 	ld	e,(hl)
+   00B4 23                  300 	inc	hl
+   00B5 56                  301 	ld	d,(hl)
+   00B6 1A                  302 	ld	a,(de)
+                            303 ;	genPlus
+                            304 ;	AOP_STK for _memcpy_s_1_1
+                            305 ;	genPlusIncr
+   00B7 2B                  306 	dec	hl
+   00B8 34                  307 	inc	(hl)
+   00B9 20 02               308 	jr	nz,00127$
+   00BB 23                  309 	inc	hl
+   00BC 34                  310 	inc	(hl)
+   00BD                     311 00127$:
+                            312 ;	genAssign (pointer)
+                            313 ;	AOP_STK for _memcpy_d_1_1
+   00BD F8 02               314 	lda	hl,2(sp)
+   00BF 5E                  315 	ld	e,(hl)
+   00C0 23                  316 	inc	hl
+   00C1 56                  317 	ld	d,(hl)
+   00C2 12                  318 	ld	(de),a
+                            319 ;	genPlus
+                            320 ;	AOP_STK for _memcpy_d_1_1
+                            321 ;	genPlusIncr
+   00C3 2B                  322 	dec	hl
+   00C4 34                  323 	inc	(hl)
+   00C5 20 02               324 	jr	nz,00128$
+   00C7 23                  325 	inc	hl
+   00C8 34                  326 	inc	(hl)
+   00C9                     327 00128$:
+                            328 ;	genLabel
+   00C9                     329 00105$:
+                            330 ;	_memcpy.c 59
+                            331 ;	genAnd
+                            332 ;	AOP_STK for 
+   00C9 F8 0A               333 	lda	hl,10(sp)
+   00CB 7E                  334 	ld	a,(hl)
+   00CC E6 01               335 	and	a,#0x01
+   00CE 20 03               336 	jr	nz,00129$
+   00D0 C3rDEs00            337 	jp	00107$
+   00D3                     338 00129$:
+                            339 ;	_memcpy.c 60
+                            340 ;	genPointerGet
+                            341 ;	AOP_STK for _memcpy_s_1_1
+   00D3 F8 00               342 	lda	hl,0(sp)
+   00D5 5E                  343 	ld	e,(hl)
+   00D6 23                  344 	inc	hl
+   00D7 56                  345 	ld	d,(hl)
+   00D8 1A                  346 	ld	a,(de)
+                            347 ;	genAssign (pointer)
+                            348 ;	AOP_STK for _memcpy_d_1_1
+   00D9 23                  349 	inc	hl
+   00DA 5E                  350 	ld	e,(hl)
+   00DB 23                  351 	inc	hl
+   00DC 56                  352 	ld	d,(hl)
+   00DD 12                  353 	ld	(de),a
+                            354 ;	genLabel
+   00DE                     355 00107$:
+                            356 ;	_memcpy.c 62
+                            357 ;	genRet
+                            358 ;	AOP_STK for 
+   00DE F8 06               359 	lda	hl,6(sp)
+   00E0 5E                  360 	ld	e,(hl)
+   00E1 23                  361 	inc	hl
+   00E2 56                  362 	ld	d,(hl)
+                            363 ;	genLabel
+   00E3                     364 00108$:
+                            365 ;	genEndFunction
+   00E3 E8 04               366 	lda	sp,4(sp)
+   00E5 C9                  367 	ret
+   00E6                     368 ___memcpy_end:
+                            369 	.area _CODE

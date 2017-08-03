@@ -1,0 +1,24 @@
+XL
+H 9 areas 2 global symbols
+M _strpbrk
+S _strchr Ref0000
+A _CODE size 39 flags 0
+S _strpbrk Def0000
+A _DATA size 0 flags 0
+A _OVERLAY size 0 flags 0
+A _ISEG size 0 flags 0
+A _BSEG size 0 flags 0
+A _XSEG size 0 flags 0
+A _GSINIT size 0 flags 0
+A _GSFINAL size 0 flags 0
+A _HOME size 0 flags 0
+T 00 00 DD E5 DD 21 00 00 DD 39 DD 4E 04 DD 46 05
+R 00 00 00 00
+T 0E 00 0A 5F 53 AF B3 CA 33 00 C5 7A F5 33 DD 6E
+R 00 00 00 00 00 08 00 00
+T 1C 00 06 DD 66 07 E5 CD 00 00 54 5D E1 33 C1 7B
+R 00 00 00 00 02 08 00 00
+T 2A 00 B2 CA 0E 00 69 60 C3 36 00 21 00 00 DD E1
+R 00 00 00 00 00 04 00 00 00 09 00 00
+T 38 00 C9
+R 00 00 00 00

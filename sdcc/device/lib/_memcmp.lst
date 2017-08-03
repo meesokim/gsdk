@@ -1,0 +1,201 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:49 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module _memcmp
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _memcmp
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	_memcmp.c 27
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function memcmp
+                             58 ; ---------------------------------
+   0000                      59 ___memcmp_start:
+   0000                      60 _memcmp:
+   0000 E8 FE                61 	lda	sp,-2(sp)
+                             62 ;	_memcmp.c 33
+                             63 ;	genIfx
+                             64 ;	AOP_STK for 
+   0002 F8 08                65 	lda	hl,8(sp)
+   0004 2A                   66 	ld	a,(hl+)
+   0005 B6                   67 	or	a,(hl)
+   0006 C2r0Fs00             68 	jp	nz,00104$
+                             69 ;	_memcmp.c 34
+                             70 ;	genRet
+   0009 11 00 00             71 	ld	de,#0x0000
+   000C C3r69s00             72 	jp	00107$
+                             73 ;	_memcmp.c 36
+                             74 ;	genLabel
+   000F                      75 00104$:
+                             76 ;	genMinus
+                             77 ;	AOP_STK for 
+   000F F8 08                78 	lda	hl,8(sp)
+   0011 4E                   79 	ld	c,(hl)
+   0012 23                   80 	inc	hl
+   0013 46                   81 	ld	b,(hl)
+   0014 0B                   82 	dec	bc
+                             83 ;	genAssign
+                             84 ;	AOP_STK for 
+   0015 2B                   85 	dec	hl
+   0016 71                   86 	ld	(hl),c
+   0017 23                   87 	inc	hl
+   0018 70                   88 	ld	(hl),b
+                             89 ;	genIfx
+   0019 79                   90 	ld	a,c
+   001A B0                   91 	or	a,b
+   001B CAr4Ds00             92 	jp	z,00106$
+                             93 ;	genAssign
+                             94 ;	(operands are equal 3)
+                             95 ;	genPointerGet
+                             96 ;	AOP_STK for 
+                             97 ;	AOP_STK for _memcmp_sloc0_1_0
+   001E F8 04                98 	lda	hl,4(sp)
+   0020 5E                   99 	ld	e,(hl)
+   0021 23                  100 	inc	hl
+   0022 56                  101 	ld	d,(hl)
+   0023 1A                  102 	ld	a,(de)
+   0024 F8 01               103 	lda	hl,1(sp)
+   0026 77                  104 	ld	(hl),a
+                            105 ;	genAssign
+                            106 ;	AOP_STK for 
+   0027 F8 06               107 	lda	hl,6(sp)
+   0029 4E                  108 	ld	c,(hl)
+   002A 23                  109 	inc	hl
+   002B 46                  110 	ld	b,(hl)
+                            111 ;	genPointerGet
+                            112 ;	AOP_STK for _memcmp_sloc1_1_0
+   002C 0A                  113 	ld	a,(bc)
+   002D F8 00               114 	lda	hl,0(sp)
+   002F 77                  115 	ld	(hl),a
+                            116 ;	genCmpEq
+                            117 ;	AOP_STK for _memcmp_sloc0_1_0
+                            118 ;	AOP_STK for _memcmp_sloc1_1_0
+                            119 ; genCmpEq: left 1, right 1, result 0
+   0030 2A                  120 	ld	a,(hl+)
+   0031 BE                  121 	cp	(hl)
+   0032 20 02               122 	jr	nz,00113$
+   0034 18 03               123 	jr	00114$
+   0036                     124 00113$:
+   0036 C3r4Ds00            125 	jp	00106$
+   0039                     126 00114$:
+                            127 ;	_memcmp.c 37
+                            128 ;	genAssign
+                            129 ;	AOP_STK for 
+                            130 ;	(registers are the same)
+                            131 ;	genPlus
+                            132 ;	AOP_STK for 
+                            133 ;	genPlusIncr
+   0039 F8 04               134 	lda	hl,4(sp)
+   003B 34                  135 	inc	(hl)
+   003C 20 02               136 	jr	nz,00115$
+   003E 23                  137 	inc	hl
+   003F 34                  138 	inc	(hl)
+   0040                     139 00115$:
+                            140 ;	_memcmp.c 38
+                            141 ;	genAssign
+                            142 ;	(registers are the same)
+                            143 ;	genPlus
+                            144 ;	AOP_STK for 
+                            145 ;	genPlusIncr
+                            146 ;	Can't optimise plus by inc, falling back to the normal way
+   0040 21 01 00            147 	ld	hl,#0x0001
+   0043 09                  148 	add	hl,bc
+   0044 7D                  149 	ld	a,l
+   0045 54                  150 	ld	d,h
+   0046 F8 06               151 	lda	hl,6(sp)
+   0048 22                  152 	ld	(hl+),a
+   0049 72                  153 	ld	(hl),d
+                            154 ;	genGoto
+   004A C3r0Fs00            155 	jp	00104$
+                            156 ;	genLabel
+   004D                     157 00106$:
+                            158 ;	_memcmp.c 41
+                            159 ;	genAssign
+                            160 ;	AOP_STK for 
+   004D F8 04               161 	lda	hl,4(sp)
+   004F 4E                  162 	ld	c,(hl)
+   0050 23                  163 	inc	hl
+   0051 46                  164 	ld	b,(hl)
+                            165 ;	genPointerGet
+                            166 ;	AOP_STK for _memcmp_sloc1_1_0
+   0052 0A                  167 	ld	a,(bc)
+   0053 F8 00               168 	lda	hl,0(sp)
+   0055 77                  169 	ld	(hl),a
+                            170 ;	genAssign
+                            171 ;	AOP_STK for 
+   0056 F8 06               172 	lda	hl,6(sp)
+   0058 46                  173 	ld	b,(hl)
+   0059 23                  174 	inc	hl
+   005A 4E                  175 	ld	c,(hl)
+                            176 ;	genPointerGet
+   005B 58                  177 	ld	e,b
+   005C 51                  178 	ld	d,c
+   005D 1A                  179 	ld	a,(de)
+   005E 47                  180 	ld	b,a
+                            181 ;	genMinus
+                            182 ;	AOP_STK for _memcmp_sloc1_1_0
+   005F F8 00               183 	lda	hl,0(sp)
+   0061 7E                  184 	ld	a,(hl)
+   0062 90                  185 	sub	a,b
+                            186 ;	genCast
+                            187 ; Removed redundent load
+   0063 47                  188 	ld	b,a
+   0064 17                  189 	rla	
+   0065 9F                  190 	sbc	a,a
+   0066 4F                  191 	ld	c,a
+                            192 ;	genRet
+   0067 58                  193 	ld	e,b
+   0068 51                  194 	ld	d,c
+                            195 ;	genLabel
+   0069                     196 00107$:
+                            197 ;	genEndFunction
+   0069 E8 02               198 	lda	sp,2(sp)
+   006B C9                  199 	ret
+   006C                     200 ___memcmp_end:
+                            201 	.area _CODE

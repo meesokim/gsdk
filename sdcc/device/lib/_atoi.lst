@@ -1,0 +1,328 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:47 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module _atoi
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _atoi
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	_atoi.c 25
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function atoi
+                             58 ; ---------------------------------
+   0000                      59 ___atoi_start:
+   0000                      60 _atoi:
+   0000 E8 F9                61 	lda	sp,-7(sp)
+                             62 ;	_atoi.c 27
+                             63 ;	genAssign
+                             64 ;	AOP_STK for _atoi_rv_1_1
+   0002 F8 05                65 	lda	hl,5(sp)
+   0004 36 00                66 	ld	(hl),#0x00
+   0006 23                   67 	inc	hl
+   0007 36 00                68 	ld	(hl),#0x00
+                             69 ;	_atoi.c 31
+                             70 ;	genAssign
+                             71 ;	AOP_STK for 
+   0009 F8 09                72 	lda	hl,9(sp)
+   000B 4E                   73 	ld	c,(hl)
+   000C 23                   74 	inc	hl
+   000D 46                   75 	ld	b,(hl)
+                             76 ;	genLabel
+   000E                      77 00107$:
+                             78 ;	genPointerGet
+                             79 ;	AOP_STK for _atoi_sloc0_1_0
+   000E 0A                   80 	ld	a,(bc)
+   000F F8 03                81 	lda	hl,3(sp)
+   0011 77                   82 	ld	(hl),a
+                             83 ;	genIfx
+                             84 ;	AOP_STK for _atoi_sloc0_1_0
+   0012 AF                   85 	xor	a,a
+   0013 B6                   86 	or	a,(hl)
+   0014 CAr3Es00             87 	jp	z,00109$
+                             88 ;	_atoi.c 32
+                             89 ;	genCmpGt
+                             90 ;	AOP_STK for _atoi_sloc0_1_0
+   0017 1E B9                91 	ld	e,#0xB9
+   0019 7E                   92 	ld	a,(hl)
+   001A EE 80                93 	xor	a,#0x80
+   001C 57                   94 	ld	d,a
+   001D 7B                   95 	ld	a,e
+   001E 92                   96 	sub	a,d
+   001F DAr2As00             97 	jp	c,00102$
+                             98 ;	genCmpLt
+                             99 ;	AOP_STK for _atoi_sloc0_1_0
+   0022 7E                  100 	ld	a,(hl)
+   0023 EE 80               101 	xor	a,#0x80
+   0025 FE B0               102 	cp	#0x30^0x80
+   0027 D2r3Es00            103 	jp	nc,00109$
+                            104 ;	_atoi.c 33
+                            105 ;	genLabel
+   002A                     106 00102$:
+                            107 ;	_atoi.c 34
+                            108 ;	genCmpEq
+                            109 ;	AOP_STK for _atoi_sloc0_1_0
+                            110 ; genCmpEq: left 1, right 1, result 0
+   002A F8 03               111 	lda	hl,3(sp)
+   002C 7E                  112 	ld	a,(hl)
+   002D FE 2D               113 	cp	a,#0x2D
+   002F CAr3Es00            114 	jp	z,00109$
+   0032                     115 00133$:
+                            116 ;	genCmpEq
+                            117 ;	AOP_STK for _atoi_sloc0_1_0
+                            118 ; genCmpEq: left 1, right 1, result 0
+   0032 F8 03               119 	lda	hl,3(sp)
+   0034 7E                  120 	ld	a,(hl)
+   0035 FE 2B               121 	cp	a,#0x2B
+   0037 CAr3Es00            122 	jp	z,00109$
+   003A                     123 00134$:
+                            124 ;	_atoi.c 36
+                            125 ;	genPlus
+                            126 ;	genPlusIncr
+   003A 03                  127 	inc	bc
+                            128 ;	genGoto
+   003B C3r0Es00            129 	jp	00107$
+                            130 ;	genLabel
+   003E                     131 00109$:
+                            132 ;	_atoi.c 39
+                            133 ;	genAssign
+                            134 ;	AOP_STK for 
+   003E F8 09               135 	lda	hl,9(sp)
+   0040 71                  136 	ld	(hl),c
+   0041 23                  137 	inc	hl
+   0042 70                  138 	ld	(hl),b
+                            139 ;	genCmpEq
+                            140 ;	AOP_STK for _atoi_sloc0_1_0
+                            141 ;	AOP_STK for _atoi_sign_1_1
+                            142 ; genCmpEq: left 1, right 1, result 1
+   0043 F8 03               143 	lda	hl,3(sp)
+   0045 7E                  144 	ld	a,(hl)
+   0046 FE 2D               145 	cp	a,#0x2D
+   0048 C2r4Fs00            146 	jp	nz,00135$
+   004B 3E 01               147 	ld	a,#0x01
+   004D 18 01               148 	jr	00136$
+   004F                     149 00135$:
+   004F AF                  150 	xor	a,a
+   0050                     151 00136$:
+   0050 F8 04               152 	lda	hl,4(sp)
+   0052 77                  153 	ld	(hl),a
+                            154 ;	genAssign
+                            155 ;	AOP_STK for _atoi_sign_1_1
+                            156 ;	(registers are the same)
+                            157 ;	_atoi.c 40
+                            158 ;	genIfx
+                            159 ;	AOP_STK for _atoi_sign_1_1
+   0053 AF                  160 	xor	a,a
+   0054 B6                  161 	or	a,(hl)
+   0055 C2r64s00            162 	jp	nz,00110$
+                            163 ;	genCmpEq
+                            164 ;	AOP_STK for _atoi_sloc0_1_0
+                            165 ; genCmpEq: left 1, right 1, result 0
+   0058 2B                  166 	dec	hl
+   0059 7E                  167 	ld	a,(hl)
+   005A FE 2B               168 	cp	a,#0x2B
+   005C C2r6Es00            169 	jp	nz,00131$
+   005F 18 03               170 	jr	00138$
+   0061                     171 00137$:
+   0061 C3r6Es00            172 	jp	00131$
+   0064                     173 00138$:
+                            174 ;	genLabel
+   0064                     175 00110$:
+                            176 ;	genPlus
+                            177 ;	AOP_STK for 
+                            178 ;	genPlusIncr
+                            179 ;	Can't optimise plus by inc, falling back to the normal way
+   0064 21 01 00            180 	ld	hl,#0x0001
+   0067 09                  181 	add	hl,bc
+   0068 7D                  182 	ld	a,l
+   0069 54                  183 	ld	d,h
+   006A F8 09               184 	lda	hl,9(sp)
+   006C 22                  185 	ld	(hl+),a
+   006D 72                  186 	ld	(hl),d
+                            187 ;	_atoi.c 42
+                            188 ;	genLabel
+   006E                     189 00131$:
+                            190 ;	genAssign
+                            191 ;	(operands are equal 3)
+                            192 ;	genLabel
+   006E                     193 00115$:
+                            194 ;	genPointerGet
+                            195 ;	AOP_STK for 
+                            196 ;	AOP_STK for _atoi_sloc0_1_0
+   006E F8 09               197 	lda	hl,9(sp)
+   0070 5E                  198 	ld	e,(hl)
+   0071 23                  199 	inc	hl
+   0072 56                  200 	ld	d,(hl)
+   0073 1A                  201 	ld	a,(de)
+   0074 F8 03               202 	lda	hl,3(sp)
+   0076 77                  203 	ld	(hl),a
+                            204 ;	genIfx
+                            205 ;	AOP_STK for _atoi_sloc0_1_0
+   0077 AF                  206 	xor	a,a
+   0078 B6                  207 	or	a,(hl)
+   0079 CArC0s00            208 	jp	z,00117$
+                            209 ;	genCmpLt
+                            210 ;	AOP_STK for _atoi_sloc0_1_0
+   007C 7E                  211 	ld	a,(hl)
+   007D EE 80               212 	xor	a,#0x80
+   007F FE B0               213 	cp	#0x30^0x80
+   0081 DArC0s00            214 	jp	c,00117$
+                            215 ;	genCmpGt
+                            216 ;	AOP_STK for _atoi_sloc0_1_0
+   0084 1E B9               217 	ld	e,#0xB9
+   0086 7E                  218 	ld	a,(hl)
+   0087 EE 80               219 	xor	a,#0x80
+   0089 57                  220 	ld	d,a
+   008A 7B                  221 	ld	a,e
+   008B 92                  222 	sub	a,d
+   008C DArC0s00            223 	jp	c,00117$
+                            224 ;	_atoi.c 43
+                            225 ;	genMult
+                            226 ;	AOP_STK for _atoi_rv_1_1
+   008F 23                  227 	inc	hl
+   0090 23                  228 	inc	hl
+   0091 5E                  229 	ld	e,(hl)
+   0092 23                  230 	inc	hl
+   0093 56                  231 	ld	d,(hl)
+   0094 6B                  232 	ld	l,e
+   0095 62                  233 	ld	h,d
+   0096 29                  234 	add	hl,hl
+   0097 29                  235 	add	hl,hl
+   0098 19                  236 	add	hl,de
+   0099 29                  237 	add	hl,hl
+   009A 4D                  238 	ld	c,l
+   009B 44                  239 	ld	b,h
+                            240 ;	genMinus
+                            241 ;	AOP_STK for _atoi_sloc0_1_0
+                            242 ;	AOP_STK for _atoi_sloc1_1_0
+   009C F8 03               243 	lda	hl,3(sp)
+   009E 7E                  244 	ld	a,(hl)
+   009F C6 D0               245 	add	a,#0xD0
+   00A1 2B                  246 	dec	hl
+                            247 ;	genCast
+                            248 ;	AOP_STK for _atoi_sloc1_1_0
+                            249 ;	AOP_STK for _atoi_sloc2_1_0
+                            250 ; Removed redundent load
+   00A2 32                  251 	ld      (hl-),a
+   00A3 2B                  252 	dec	hl
+   00A4 22                  253 	ld	(hl+),a
+   00A5 23                  254 	inc	hl
+   00A6 7E                  255 	ld	a,(hl)
+   00A7 17                  256 	rla	
+   00A8 9F                  257 	sbc	a,a
+   00A9 2B                  258 	dec	hl
+                            259 ;	genPlus
+                            260 ;	AOP_STK for _atoi_sloc2_1_0
+                            261 ;	Can't optimise plus by inc, falling back to the normal way
+   00AA 32                  262 	ld      (hl-),a
+   00AB 2A                  263 	ld	a,(hl+)
+   00AC 66                  264 	ld	h,(hl)
+   00AD 6F                  265 	ld	l,a
+   00AE 09                  266 	add	hl,bc
+   00AF 4D                  267 	ld	c,l
+   00B0 44                  268 	ld	b,h
+                            269 ;	genAssign
+                            270 ;	AOP_STK for _atoi_rv_1_1
+   00B1 F8 05               271 	lda	hl,5(sp)
+   00B3 71                  272 	ld	(hl),c
+   00B4 23                  273 	inc	hl
+   00B5 70                  274 	ld	(hl),b
+                            275 ;	_atoi.c 44
+                            276 ;	genPlus
+                            277 ;	AOP_STK for 
+                            278 ;	genPlusIncr
+   00B6 F8 09               279 	lda	hl,9(sp)
+   00B8 34                  280 	inc	(hl)
+   00B9 20 02               281 	jr	nz,00139$
+   00BB 23                  282 	inc	hl
+   00BC 34                  283 	inc	(hl)
+   00BD                     284 00139$:
+                            285 ;	genGoto
+   00BD C3r6Es00            286 	jp	00115$
+                            287 ;	genLabel
+   00C0                     288 00117$:
+                            289 ;	_atoi.c 47
+                            290 ;	genIfx
+                            291 ;	AOP_STK for _atoi_sign_1_1
+   00C0 AF                  292 	xor	a,a
+   00C1 F8 04               293 	lda	hl,4(sp)
+   00C3 B6                  294 	or	a,(hl)
+   00C4 CArD5s00            295 	jp	z,00120$
+                            296 ;	genUminus
+                            297 ;	AOP_STK for _atoi_rv_1_1
+   00C7 AF                  298 	xor	a,a
+   00C8 23                  299 	inc	hl
+   00C9 3E 00               300 	ld	a,#0x00
+   00CB 9E                  301 	sbc	a,(hl)
+   00CC 4F                  302 	ld	c,a
+   00CD 23                  303 	inc	hl
+   00CE 3E 00               304 	ld	a,#0x00
+   00D0 9E                  305 	sbc	a,(hl)
+   00D1 47                  306 	ld	b,a
+                            307 ;	genGoto
+   00D2 C3rDAs00            308 	jp	00121$
+                            309 ;	genLabel
+   00D5                     310 00120$:
+                            311 ;	genAssign
+                            312 ;	AOP_STK for _atoi_rv_1_1
+   00D5 F8 05               313 	lda	hl,5(sp)
+   00D7 4E                  314 	ld	c,(hl)
+   00D8 23                  315 	inc	hl
+   00D9 46                  316 	ld	b,(hl)
+                            317 ;	genLabel
+   00DA                     318 00121$:
+                            319 ;	genRet
+   00DA 59                  320 	ld	e,c
+   00DB 50                  321 	ld	d,b
+                            322 ;	genLabel
+   00DC                     323 00118$:
+                            324 ;	genEndFunction
+   00DC E8 07               325 	lda	sp,7(sp)
+   00DE C9                  326 	ret
+   00DF                     327 ___atoi_end:
+                            328 	.area _CODE

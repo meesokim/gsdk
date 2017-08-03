@@ -1,0 +1,278 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:51 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module gets
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _gets
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	gets.c 3
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function gets
+                             58 ; ---------------------------------
+   0000                      59 ___gets_start:
+   0000                      60 _gets:
+   0000 E8 FB                61 	lda	sp,-5(sp)
+                             62 ;	gets.c 4
+                             63 ;	genAssign
+                             64 ;	AOP_STK for 
+                             65 ;	AOP_STK for _gets_s_1_1
+   0002 F8 07                66 	lda	hl,7(sp)
+   0004 2A                   67 	ld	a,(hl+)
+   0005 5E                   68 	ld	e,(hl)
+   0006 F8 03                69 	lda	hl,3(sp)
+   0008 22                   70 	ld	(hl+),a
+   0009 73                   71 	ld	(hl),e
+                             72 ;	gets.c 6
+                             73 ;	genAssign
+                             74 ;	AOP_STK for _gets_count_1_1
+   000A F8 00                75 	lda	hl,0(sp)
+   000C 36 00                76 	ld	(hl),#0x00
+   000E 23                   77 	inc	hl
+   000F 36 00                78 	ld	(hl),#0x00
+                             79 ;	gets.c 8
+                             80 ;	genLabel
+   0011                      81 00109$:
+                             82 ;	gets.c 9
+                             83 ;	genCall
+                             84 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0011 CDr00s00             85 	call	_getchar
+                             86 ;	AOP_STK for _gets_c_1_1
+   0014 F8 02                87 	lda	hl,2(sp)
+   0016 73                   88 	ld	(hl),e
+                             89 ;	genAssign
+                             90 ;	AOP_STK for _gets_c_1_1
+   0017 F8 02                91 	lda	hl,2(sp)
+   0019 4E                   92 	ld	c,(hl)
+                             93 ;	gets.c 10
+                             94 ;	genCmpEq
+                             95 ; genCmpEq: left 1, right 1, result 0
+   001A 79                   96 	ld	a,c
+   001B FE 08                97 	cp	a,#0x08
+   001D CAr2Fs00             98 	jp	z,00103$
+   0020                      99 00118$:
+                            100 ;	genCmpEq
+                            101 ; genCmpEq: left 1, right 1, result 0
+   0020 79                  102 	ld	a,c
+   0021 FE 0A               103 	cp	a,#0x0A
+   0023 CAr71s00            104 	jp	z,00104$
+   0026                     105 00119$:
+                            106 ;	genCmpEq
+                            107 ; genCmpEq: left 1, right 1, result 0
+   0026 79                  108 	ld	a,c
+   0027 FE 0D               109 	cp	a,#0x0D
+   0029 CAr71s00            110 	jp	z,00104$
+   002C                     111 00120$:
+                            112 ;	genGoto
+   002C C3r99s00            113 	jp	00106$
+                            114 ;	gets.c 19
+                            115 ;	genLabel
+   002F                     116 00103$:
+                            117 ;	gets.c 12
+                            118 ;	genIfx
+                            119 ;	AOP_STK for _gets_count_1_1
+   002F F8 00               120 	lda	hl,0(sp)
+   0031 2A                  121 	ld	a,(hl+)
+   0032 B6                  122 	or	a,(hl)
+   0033 CAr11s00            123 	jp	z,00109$
+                            124 ;	gets.c 13
+                            125 ;	genIpush
+                            126 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   0036 C5                  127 	push	bc
+   0037 3E 08               128 	ld	a,#0x08
+   0039 F5                  129 	push	af
+   003A 33                  130 	inc	sp
+                            131 ;	genCall
+   003B CDr00s00            132 	call	_putchar
+   003E E8 01               133 	lda	sp,1(sp)
+   0040 E1                  134 	pop	hl
+   0041 4D                  135 	ld	c,l
+                            136 ;	gets.c 14
+                            137 ;	genIpush
+                            138 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   0042 C5                  139 	push	bc
+   0043 3E 20               140 	ld	a,#0x20
+   0045 F5                  141 	push	af
+   0046 33                  142 	inc	sp
+                            143 ;	genCall
+   0047 CDr00s00            144 	call	_putchar
+   004A E8 01               145 	lda	sp,1(sp)
+   004C E1                  146 	pop	hl
+   004D 4D                  147 	ld	c,l
+                            148 ;	gets.c 15
+                            149 ;	genIpush
+                            150 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   004E C5                  151 	push	bc
+   004F 3E 08               152 	ld	a,#0x08
+   0051 F5                  153 	push	af
+   0052 33                  154 	inc	sp
+                            155 ;	genCall
+   0053 CDr00s00            156 	call	_putchar
+   0056 E8 01               157 	lda	sp,1(sp)
+   0058 E1                  158 	pop	hl
+   0059 4D                  159 	ld	c,l
+                            160 ;	gets.c 16
+                            161 ;	genMinus
+                            162 ;	AOP_STK for _gets_s_1_1
+   005A F8 03               163 	lda	hl,3(sp)
+   005C 5E                  164 	ld	e,(hl)
+   005D 23                  165 	inc	hl
+   005E 56                  166 	ld	d,(hl)
+   005F 1B                  167 	dec	de
+   0060 2B                  168 	dec	hl
+   0061 73                  169 	ld	(hl),e
+   0062 23                  170 	inc	hl
+   0063 72                  171 	ld	(hl),d
+                            172 ;	gets.c 17
+                            173 ;	genMinus
+                            174 ;	AOP_STK for _gets_count_1_1
+   0064 F8 00               175 	lda	hl,0(sp)
+   0066 5E                  176 	ld	e,(hl)
+   0067 23                  177 	inc	hl
+   0068 56                  178 	ld	d,(hl)
+   0069 1B                  179 	dec	de
+   006A 2B                  180 	dec	hl
+   006B 73                  181 	ld	(hl),e
+   006C 23                  182 	inc	hl
+   006D 72                  183 	ld	(hl),d
+                            184 ;	gets.c 19
+                            185 ;	genGoto
+   006E C3r11s00            186 	jp	00109$
+                            187 ;	gets.c 22
+                            188 ;	genLabel
+   0071                     189 00104$:
+                            190 ;	genIpush
+                            191 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   0071 C5                  192 	push	bc
+   0072 3E 0D               193 	ld	a,#0x0D
+   0074 F5                  194 	push	af
+   0075 33                  195 	inc	sp
+                            196 ;	genCall
+   0076 CDr00s00            197 	call	_putchar
+   0079 E8 01               198 	lda	sp,1(sp)
+   007B E1                  199 	pop	hl
+   007C 4D                  200 	ld	c,l
+                            201 ;	gets.c 23
+                            202 ;	genIpush
+                            203 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   007D C5                  204 	push	bc
+   007E 3E 0A               205 	ld	a,#0x0A
+   0080 F5                  206 	push	af
+   0081 33                  207 	inc	sp
+                            208 ;	genCall
+   0082 CDr00s00            209 	call	_putchar
+   0085 E8 01               210 	lda	sp,1(sp)
+   0087 E1                  211 	pop	hl
+   0088 4D                  212 	ld	c,l
+                            213 ;	gets.c 24
+                            214 ;	genAssign (pointer)
+                            215 ;	AOP_STK for _gets_s_1_1
+   0089 F8 03               216 	lda	hl,3(sp)
+   008B 5E                  217 	ld	e,(hl)
+   008C 23                  218 	inc	hl
+   008D 56                  219 	ld	d,(hl)
+   008E 3E 00               220 	ld	a,#0x00
+   0090 12                  221 	ld	(de),a
+                            222 ;	gets.c 25
+                            223 ;	genRet
+                            224 ;	AOP_STK for 
+   0091 F8 07               225 	lda	hl,7(sp)
+   0093 5E                  226 	ld	e,(hl)
+   0094 23                  227 	inc	hl
+   0095 56                  228 	ld	d,(hl)
+   0096 C3rB8s00            229 	jp	00111$
+                            230 ;	gets.c 27
+                            231 ;	genLabel
+   0099                     232 00106$:
+                            233 ;	genAssign (pointer)
+                            234 ;	AOP_STK for _gets_s_1_1
+   0099 F8 03               235 	lda	hl,3(sp)
+   009B 5E                  236 	ld	e,(hl)
+   009C 23                  237 	inc	hl
+   009D 56                  238 	ld	d,(hl)
+   009E 79                  239 	ld	a,c
+   009F 12                  240 	ld	(de),a
+                            241 ;	genPlus
+                            242 ;	AOP_STK for _gets_s_1_1
+                            243 ;	genPlusIncr
+   00A0 2B                  244 	dec	hl
+   00A1 34                  245 	inc	(hl)
+   00A2 20 02               246 	jr	nz,00121$
+   00A4 23                  247 	inc	hl
+   00A5 34                  248 	inc	(hl)
+   00A6                     249 00121$:
+                            250 ;	gets.c 28
+                            251 ;	genPlus
+                            252 ;	AOP_STK for _gets_count_1_1
+                            253 ;	genPlusIncr
+   00A6 F8 00               254 	lda	hl,0(sp)
+   00A8 34                  255 	inc	(hl)
+   00A9 20 02               256 	jr	nz,00122$
+   00AB 23                  257 	inc	hl
+   00AC 34                  258 	inc	(hl)
+   00AD                     259 00122$:
+                            260 ;	gets.c 29
+                            261 ;	genIpush
+                            262 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   00AD 79                  263 	ld	a,c
+   00AE F5                  264 	push	af
+   00AF 33                  265 	inc	sp
+                            266 ;	genCall
+   00B0 CDr00s00            267 	call	_putchar
+   00B3 E8 01               268 	lda	sp,1(sp)
+                            269 ;	gets.c 31
+                            270 ;	genGoto
+   00B5 C3r11s00            271 	jp	00109$
+                            272 ;	genLabel
+   00B8                     273 00111$:
+                            274 ;	genEndFunction
+   00B8 E8 05               275 	lda	sp,5(sp)
+   00BA C9                  276 	ret
+   00BB                     277 ___gets_end:
+                            278 	.area _CODE

@@ -1,0 +1,150 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:48 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module _ispunct
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _ispunct
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	_ispunct.c 25
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function ispunct
+                             58 ; ---------------------------------
+   0000                      59 ___ispunct_start:
+   0000                      60 _ispunct:
+                             61 	
+                             62 ;	_ispunct.c 28
+                             63 ;	genIpush
+                             64 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                             65 ;	AOP_STK for 
+   0000 F8 02                66 	lda	hl,2(sp)
+   0002 7E                   67 	ld	a,(hl)
+   0003 F5                   68 	push	af
+   0004 33                   69 	inc	sp
+                             70 ;	genCall
+   0005 CDr00s00             71 	call	_isprint
+   0008 4B                   72 	ld	c,e
+   0009 E8 01                73 	lda	sp,1(sp)
+                             74 ;	genIfx
+   000B AF                   75 	xor	a,a
+   000C B1                   76 	or	a,c
+   000D CAr4Ds00             77 	jp	z,00102$
+                             78 ;	_ispunct.c 29
+                             79 ;	genIpush
+                             80 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                             81 ;	AOP_STK for 
+   0010 F8 02                82 	lda	hl,2(sp)
+   0012 7E                   83 	ld	a,(hl)
+   0013 F5                   84 	push	af
+   0014 33                   85 	inc	sp
+                             86 ;	genCall
+   0015 CDr00s00             87 	call	_islower
+   0018 4B                   88 	ld	c,e
+   0019 E8 01                89 	lda	sp,1(sp)
+                             90 ;	genIfx
+   001B AF                   91 	xor	a,a
+   001C B1                   92 	or	a,c
+   001D C2r4Ds00             93 	jp	nz,00102$
+                             94 ;	_ispunct.c 30
+                             95 ;	genIpush
+                             96 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                             97 ;	AOP_STK for 
+   0020 F8 02                98 	lda	hl,2(sp)
+   0022 7E                   99 	ld	a,(hl)
+   0023 F5                  100 	push	af
+   0024 33                  101 	inc	sp
+                            102 ;	genCall
+   0025 CDr00s00            103 	call	_isupper
+   0028 4B                  104 	ld	c,e
+   0029 E8 01               105 	lda	sp,1(sp)
+                            106 ;	genIfx
+   002B AF                  107 	xor	a,a
+   002C B1                  108 	or	a,c
+   002D C2r4Ds00            109 	jp	nz,00102$
+                            110 ;	_ispunct.c 31
+                            111 ;	genCmpEq
+                            112 ;	AOP_STK for 
+                            113 ; genCmpEq: left 1, right 1, result 0
+   0030 F8 02               114 	lda	hl,2(sp)
+   0032 7E                  115 	ld	a,(hl)
+   0033 FE 20               116 	cp	a,#0x20
+   0035 CAr4Ds00            117 	jp	z,00102$
+   0038                     118 00114$:
+                            119 ;	_ispunct.c 32
+                            120 ;	genIpush
+                            121 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+                            122 ;	AOP_STK for 
+   0038 F8 02               123 	lda	hl,2(sp)
+   003A 7E                  124 	ld	a,(hl)
+   003B F5                  125 	push	af
+   003C 33                  126 	inc	sp
+                            127 ;	genCall
+   003D CDr00s00            128 	call	_isdigit
+   0040 4B                  129 	ld	c,e
+   0041 E8 01               130 	lda	sp,1(sp)
+                            131 ;	genIfx
+   0043 AF                  132 	xor	a,a
+   0044 B1                  133 	or	a,c
+   0045 C2r4Ds00            134 	jp	nz,00102$
+                            135 ;	_ispunct.c 33
+                            136 ;	genRet
+   0048 1E 01               137 	ld	e,#0x01
+   004A C3r4Fs00            138 	jp	00107$
+                            139 ;	genLabel
+   004D                     140 00102$:
+                            141 ;	_ispunct.c 34
+                            142 ;	genRet
+   004D 1E 00               143 	ld	e,#0x00
+                            144 ;	genLabel
+   004F                     145 00107$:
+                            146 ;	genEndFunction
+                            147 	
+   004F C9                  148 	ret
+   0050                     149 ___ispunct_end:
+                            150 	.area _CODE

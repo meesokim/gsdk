@@ -1,0 +1,189 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:50 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module _strncmp
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _strncmp
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	_strncmp.c 27
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function strncmp
+                             58 ; ---------------------------------
+   0000                      59 ___strncmp_start:
+   0000                      60 _strncmp:
+                             61 	
+                             62 ;	_strncmp.c 33
+                             63 ;	genIfx
+                             64 ;	AOP_STK for 
+   0000 F8 06                65 	lda	hl,6(sp)
+   0002 2A                   66 	ld	a,(hl+)
+   0003 B6                   67 	or	a,(hl)
+   0004 C2r0Ds00             68 	jp	nz,00114$
+                             69 ;	_strncmp.c 34
+                             70 ;	genRet
+   0007 11 00 00             71 	ld	de,#0x0000
+   000A C3r5Fs00             72 	jp	00108$
+                             73 ;	_strncmp.c 36
+                             74 ;	genLabel
+   000D                      75 00114$:
+                             76 ;	genAssign
+                             77 ;	(operands are equal 3)
+                             78 ;	genAssign
+                             79 ;	(operands are equal 3)
+                             80 ;	genLabel
+   000D                      81 00105$:
+                             82 ;	genMinus
+                             83 ;	AOP_STK for 
+   000D F8 06                84 	lda	hl,6(sp)
+   000F 5E                   85 	ld	e,(hl)
+   0010 23                   86 	inc	hl
+   0011 56                   87 	ld	d,(hl)
+   0012 1B                   88 	dec	de
+   0013 2B                   89 	dec	hl
+   0014 73                   90 	ld	(hl),e
+   0015 23                   91 	inc	hl
+   0016 72                   92 	ld	(hl),d
+                             93 ;	genAssign
+                             94 ;	(operands are equal 4)
+                             95 ;	genIfx
+                             96 ;	AOP_STK for 
+   0017 2B                   97 	dec	hl
+   0018 2A                   98 	ld	a,(hl+)
+   0019 B6                   99 	or	a,(hl)
+   001A CAr4As00            100 	jp	z,00107$
+                            101 ;	genPointerGet
+                            102 ;	AOP_STK for 
+   001D F8 02               103 	lda	hl,2(sp)
+   001F 5E                  104 	ld	e,(hl)
+   0020 23                  105 	inc	hl
+   0021 56                  106 	ld	d,(hl)
+   0022 1A                  107 	ld	a,(de)
+   0023 4F                  108 	ld	c,a
+                            109 ;	genIfx
+   0024 AF                  110 	xor	a,a
+   0025 B1                  111 	or	a,c
+   0026 CAr4As00            112 	jp	z,00107$
+                            113 ;	genPointerGet
+                            114 ;	AOP_STK for 
+   0029 23                  115 	inc	hl
+   002A 5E                  116 	ld	e,(hl)
+   002B 23                  117 	inc	hl
+   002C 56                  118 	ld	d,(hl)
+   002D 1A                  119 	ld	a,(de)
+   002E 47                  120 	ld	b,a
+                            121 ;	genCmpEq
+                            122 ; genCmpEq: left 1, right 1, result 0
+   002F 79                  123 	ld	a,c
+   0030 B8                  124 	cp	b
+   0031 C2r4As00            125 	jp	nz,00107$
+   0034 18 03               126 	jr	00116$
+   0036                     127 00115$:
+   0036 C3r4As00            128 	jp	00107$
+   0039                     129 00116$:
+                            130 ;	_strncmp.c 37
+                            131 ;	genPlus
+                            132 ;	AOP_STK for 
+                            133 ;	genPlusIncr
+   0039 F8 02               134 	lda	hl,2(sp)
+   003B 34                  135 	inc	(hl)
+   003C 20 02               136 	jr	nz,00117$
+   003E 23                  137 	inc	hl
+   003F 34                  138 	inc	(hl)
+   0040                     139 00117$:
+                            140 ;	_strncmp.c 38
+                            141 ;	genPlus
+                            142 ;	AOP_STK for 
+                            143 ;	genPlusIncr
+   0040 F8 04               144 	lda	hl,4(sp)
+   0042 34                  145 	inc	(hl)
+   0043 20 02               146 	jr	nz,00118$
+   0045 23                  147 	inc	hl
+   0046 34                  148 	inc	(hl)
+   0047                     149 00118$:
+                            150 ;	genGoto
+   0047 C3r0Ds00            151 	jp	00105$
+                            152 ;	genLabel
+   004A                     153 00107$:
+                            154 ;	_strncmp.c 41
+                            155 ;	genPointerGet
+                            156 ;	AOP_STK for 
+   004A F8 02               157 	lda	hl,2(sp)
+   004C 5E                  158 	ld	e,(hl)
+   004D 23                  159 	inc	hl
+   004E 56                  160 	ld	d,(hl)
+   004F 1A                  161 	ld	a,(de)
+   0050 4F                  162 	ld	c,a
+                            163 ;	genPointerGet
+                            164 ;	AOP_STK for 
+   0051 23                  165 	inc	hl
+   0052 5E                  166 	ld	e,(hl)
+   0053 23                  167 	inc	hl
+   0054 56                  168 	ld	d,(hl)
+   0055 1A                  169 	ld	a,(de)
+   0056 47                  170 	ld	b,a
+                            171 ;	genMinus
+   0057 79                  172 	ld	a,c
+   0058 90                  173 	sub	a,b
+                            174 ;	genCast
+                            175 ; Removed redundent load
+   0059 4F                  176 	ld	c,a
+   005A 17                  177 	rla	
+   005B 9F                  178 	sbc	a,a
+   005C 47                  179 	ld	b,a
+                            180 ;	genRet
+   005D 59                  181 	ld	e,c
+   005E 50                  182 	ld	d,b
+                            183 ;	genLabel
+   005F                     184 00108$:
+                            185 ;	genEndFunction
+                            186 	
+   005F C9                  187 	ret
+   0060                     188 ___strncmp_end:
+                            189 	.area _CODE

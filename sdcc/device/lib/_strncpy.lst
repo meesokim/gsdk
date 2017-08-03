@@ -1,0 +1,156 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:50 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module _strncpy
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _strncpy
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	_strncpy.c 27
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function strncpy
+                             58 ; ---------------------------------
+   0000                      59 ___strncpy_start:
+   0000                      60 _strncpy:
+   0000 E8 FC                61 	lda	sp,-4(sp)
+                             62 ;	_strncpy.c 32
+                             63 ;	genAssign
+                             64 ;	AOP_STK for 
+                             65 ;	AOP_STK for _strncpy_d1_1_1
+   0002 F8 06                66 	lda	hl,6(sp)
+   0004 2A                   67 	ld	a,(hl+)
+   0005 5E                   68 	ld	e,(hl)
+   0006 F8 02                69 	lda	hl,2(sp)
+   0008 22                   70 	ld	(hl+),a
+   0009 73                   71 	ld	(hl),e
+                             72 ;	_strncpy.c 34
+                             73 ;	genAssign
+                             74 ;	(operands are equal 3)
+                             75 ;	genAssign
+                             76 ;	AOP_STK for _strncpy_d1_1_1
+                             77 ;	AOP_STK for 
+   000A 2B                   78 	dec	hl
+   000B 2A                   79 	ld	a,(hl+)
+   000C 5E                   80 	ld	e,(hl)
+   000D F8 06                81 	lda	hl,6(sp)
+   000F 22                   82 	ld	(hl+),a
+   0010 73                   83 	ld	(hl),e
+                             84 ;	genAssign
+                             85 ;	AOP_STK for 
+   0011 F8 0A                86 	lda	hl,10(sp)
+   0013 4E                   87 	ld	c,(hl)
+   0014 23                   88 	inc	hl
+   0015 46                   89 	ld	b,(hl)
+                             90 ;	genLabel
+   0016                      91 00101$:
+                             92 ;	genAssign
+                             93 ;	AOP_STK for _strncpy_sloc0_1_0
+   0016 F8 00                94 	lda	hl,0(sp)
+   0018 71                   95 	ld	(hl),c
+   0019 23                   96 	inc	hl
+   001A 70                   97 	ld	(hl),b
+                             98 ;	genMinus
+   001B 0B                   99 	dec	bc
+                            100 ;	genIfx
+                            101 ;	AOP_STK for _strncpy_sloc0_1_0
+   001C 2B                  102 	dec	hl
+   001D 2A                  103 	ld	a,(hl+)
+   001E B6                  104 	or	a,(hl)
+   001F CAr3Ds00            105 	jp	z,00103$
+                            106 ;	_strncpy.c 35
+                            107 ;	genPointerGet
+                            108 ;	AOP_STK for 
+   0022 F8 08               109 	lda	hl,8(sp)
+   0024 5E                  110 	ld	e,(hl)
+   0025 23                  111 	inc	hl
+   0026 56                  112 	ld	d,(hl)
+   0027 1A                  113 	ld	a,(de)
+                            114 ;	genPlus
+                            115 ;	AOP_STK for 
+                            116 ;	genPlusIncr
+   0028 2B                  117 	dec	hl
+   0029 34                  118 	inc	(hl)
+   002A 20 02               119 	jr	nz,00108$
+   002C 23                  120 	inc	hl
+   002D 34                  121 	inc	(hl)
+   002E                     122 00108$:
+                            123 ;	genAssign (pointer)
+                            124 ;	AOP_STK for 
+   002E F8 06               125 	lda	hl,6(sp)
+   0030 5E                  126 	ld	e,(hl)
+   0031 23                  127 	inc	hl
+   0032 56                  128 	ld	d,(hl)
+   0033 12                  129 	ld	(de),a
+                            130 ;	genPlus
+                            131 ;	AOP_STK for 
+                            132 ;	genPlusIncr
+   0034 2B                  133 	dec	hl
+   0035 34                  134 	inc	(hl)
+   0036 20 02               135 	jr	nz,00109$
+   0038 23                  136 	inc	hl
+   0039 34                  137 	inc	(hl)
+   003A                     138 00109$:
+                            139 ;	genGoto
+   003A C3r16s00            140 	jp	00101$
+                            141 ;	genLabel
+   003D                     142 00103$:
+                            143 ;	_strncpy.c 36
+                            144 ;	genRet
+                            145 ;	AOP_STK for _strncpy_d1_1_1
+   003D F8 02               146 	lda	hl,2(sp)
+   003F 5E                  147 	ld	e,(hl)
+   0040 23                  148 	inc	hl
+   0041 56                  149 	ld	d,(hl)
+                            150 ;	genLabel
+   0042                     151 00104$:
+                            152 ;	genEndFunction
+   0042 E8 04               153 	lda	sp,4(sp)
+   0044 C9                  154 	ret
+   0045                     155 ___strncpy_end:
+                            156 	.area _CODE

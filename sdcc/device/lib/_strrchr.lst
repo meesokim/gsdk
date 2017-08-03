@@ -1,0 +1,191 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Fri Aug  4 01:27:51 2017
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module _strrchr
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _strrchr
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 ;--------------------------------------------------------
+                             16 ; special function bits 
+                             17 ;--------------------------------------------------------
+                             18 ;--------------------------------------------------------
+                             19 ; internal ram data
+                             20 ;--------------------------------------------------------
+                             21 	.area _DATA
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable items in internal ram 
+                             24 ;--------------------------------------------------------
+                             25 	.area _OVERLAY
+                             26 ;--------------------------------------------------------
+                             27 ; indirectly addressable internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _ISEG
+                             30 ;--------------------------------------------------------
+                             31 ; bit data
+                             32 ;--------------------------------------------------------
+                             33 	.area _BSEG
+                             34 ;--------------------------------------------------------
+                             35 ; external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _XSEG
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _GSINIT
+                             42 	.area _GSFINAL
+                             43 	.area _GSINIT
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _CODE
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;	_strrchr.c 27
+                             54 ;	genLabel
+                             55 ;	genFunction
+                             56 ;	---------------------------------
+                             57 ; Function strrchr
+                             58 ; ---------------------------------
+   0000                      59 ___strrchr_start:
+   0000                      60 _strrchr:
+   0000 E8 FD                61 	lda	sp,-3(sp)
+                             62 ;	_strrchr.c 32
+                             63 ;	genAssign
+                             64 ;	AOP_STK for 
+                             65 ;	AOP_STK for _strrchr_start_1_1
+   0002 F8 05                66 	lda	hl,5(sp)
+   0004 2A                   67 	ld	a,(hl+)
+   0005 5E                   68 	ld	e,(hl)
+   0006 F8 01                69 	lda	hl,1(sp)
+   0008 22                   70 	ld	(hl+),a
+   0009 73                   71 	ld	(hl),e
+                             72 ;	_strrchr.c 34
+                             73 ;	genAssign
+                             74 ;	AOP_STK for _strrchr_start_1_1
+                             75 ;	AOP_STK for 
+   000A 2B                   76 	dec	hl
+   000B 2A                   77 	ld	a,(hl+)
+   000C 5E                   78 	ld	e,(hl)
+   000D F8 05                79 	lda	hl,5(sp)
+   000F 22                   80 	ld	(hl+),a
+   0010 73                   81 	ld	(hl),e
+                             82 ;	genLabel
+   0011                      83 00101$:
+                             84 ;	genPointerGet
+                             85 ;	AOP_STK for 
+   0011 F8 05                86 	lda	hl,5(sp)
+   0013 5E                   87 	ld	e,(hl)
+   0014 23                   88 	inc	hl
+   0015 56                   89 	ld	d,(hl)
+   0016 1A                   90 	ld	a,(de)
+   0017 4F                   91 	ld	c,a
+                             92 ;	genPlus
+                             93 ;	AOP_STK for 
+                             94 ;	genPlusIncr
+   0018 2B                   95 	dec	hl
+   0019 34                   96 	inc	(hl)
+   001A 20 02                97 	jr	nz,00116$
+   001C 23                   98 	inc	hl
+   001D 34                   99 	inc	(hl)
+   001E                     100 00116$:
+                            101 ;	genAssign
+                            102 ;	(operands are equal 4)
+                            103 ;	genIfx
+   001E AF                  104 	xor	a,a
+   001F B1                  105 	or	a,c
+   0020 C2r11s00            106 	jp	nz,00101$
+                            107 ;	_strrchr.c 37
+                            108 ;	genLabel
+   0023                     109 00105$:
+                            110 ;	genMinus
+                            111 ;	AOP_STK for 
+   0023 F8 05               112 	lda	hl,5(sp)
+   0025 4E                  113 	ld	c,(hl)
+   0026 23                  114 	inc	hl
+   0027 46                  115 	ld	b,(hl)
+   0028 0B                  116 	dec	bc
+                            117 ;	genAssign
+                            118 ;	AOP_STK for 
+   0029 2B                  119 	dec	hl
+   002A 71                  120 	ld	(hl),c
+   002B 23                  121 	inc	hl
+   002C 70                  122 	ld	(hl),b
+                            123 ;	genCmpEq
+                            124 ;	AOP_STK for _strrchr_start_1_1
+                            125 ; genCmpEq: left 2, right 2, result 0
+   002D F8 01               126 	lda	hl,1(sp)
+   002F 7E                  127 	ld	a,(hl)
+   0030 B9                  128 	cp	c
+   0031 20 08               129 	jr	nz,00117$
+   0033 23                  130 	inc	hl
+   0034 7E                  131 	ld	a,(hl)
+   0035 B8                  132 	cp	b
+   0036 20 03               133 	jr	nz,00117$
+   0038 C3r4Cs00            134 	jp	00107$
+   003B                     135 00117$:
+                            136 ;	genPointerGet
+                            137 ;	AOP_STK for _strrchr_sloc0_1_0
+   003B 0A                  138 	ld	a,(bc)
+   003C F8 00               139 	lda	hl,0(sp)
+   003E 77                  140 	ld	(hl),a
+                            141 ;	genCmpEq
+                            142 ;	AOP_STK for _strrchr_sloc0_1_0
+                            143 ;	AOP_STK for 
+                            144 ; genCmpEq: left 1, right 1, result 0
+   003F F8 07               145 	lda	hl,7(sp)
+   0041 7E                  146 	ld	a,(hl)
+   0042 F8 00               147 	lda	hl,0(sp)
+   0044 BE                  148 	cp	(hl)
+   0045 20 02               149 	jr	nz,00118$
+   0047 18 03               150 	jr	00119$
+   0049                     151 00118$:
+   0049 C3r23s00            152 	jp	00105$
+   004C                     153 00119$:
+                            154 ;	genLabel
+   004C                     155 00107$:
+                            156 ;	_strrchr.c 40
+                            157 ;	genPointerGet
+                            158 ;	AOP_STK for _strrchr_sloc0_1_0
+   004C 0A                  159 	ld	a,(bc)
+   004D F8 00               160 	lda	hl,0(sp)
+   004F 77                  161 	ld	(hl),a
+                            162 ;	genCmpEq
+                            163 ;	AOP_STK for _strrchr_sloc0_1_0
+                            164 ;	AOP_STK for 
+                            165 ; genCmpEq: left 1, right 1, result 0
+   0050 F8 07               166 	lda	hl,7(sp)
+   0052 7E                  167 	ld	a,(hl)
+   0053 F8 00               168 	lda	hl,0(sp)
+   0055 BE                  169 	cp	(hl)
+   0056 20 02               170 	jr	nz,00120$
+   0058 18 03               171 	jr	00121$
+   005A                     172 00120$:
+   005A C3r62s00            173 	jp	00109$
+   005D                     174 00121$:
+                            175 ;	_strrchr.c 41
+                            176 ;	genRet
+   005D 59                  177 	ld	e,c
+   005E 50                  178 	ld	d,b
+   005F C3r65s00            179 	jp	00110$
+                            180 ;	genLabel
+   0062                     181 00109$:
+                            182 ;	_strrchr.c 43
+                            183 ;	genRet
+   0062 11 00 00            184 	ld	de,#0x0000
+                            185 ;	genLabel
+   0065                     186 00110$:
+                            187 ;	genEndFunction
+   0065 E8 03               188 	lda	sp,3(sp)
+   0067 C9                  189 	ret
+   0068                     190 ___strrchr_end:
+                            191 	.area _CODE
